@@ -6,8 +6,8 @@ import { Button } from 'react-native-paper'
 
 const ProductCard = ({ stock, name, price, image, id, addToCartHandler, key, i, navigate }) => {
     return (
-        <TouchableOpacity>
-            {/* onPress={navigate.navigate('productdetails', { id })} */}
+        <TouchableOpacity activeOpacity={1} onPress={() => navigate.navigate('productdetails', { id })} key={i}>
+            {/*  */}
             <View style={{
                 width: 220, elevation: 5,
                 alignItems: 'center',
@@ -15,7 +15,7 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, key, i, 
                 position: 'relative',
                 margin: 20,
                 borderRadius: 20,
-                height: 380,
+                height: 350,
                 backgroundColor: i % 2 == 0 ? color.color1 : color.color2
             }}>
                 <Image source={{ uri: image }} style={{
@@ -42,7 +42,13 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, key, i, 
 
                 </View>
                 <TouchableOpacity style={{ bottom: 0, width: '100%', }}>
-                    <Button style={{ backgroundColor: i % 2 == 0 ? color.color2 : color.color1, borderRadius: 0, borderBottomRightRadius: 20, borderBottomLeftRadius: 20 }}><Text style={{ color: i % 2 == 0 ? color.color1 : color.color2 }}>Add To Cart</Text></Button>
+                    <Button style={{
+                        backgroundColor: i % 2 == 0 ? color.color2 : color.color1,
+                        borderRadius: 0,
+                        borderBottomRightRadius: 20,
+                        borderBottomLeftRadius: 20
+                    }} onPress={() => addToCartHandler(id, stock)}>
+                        <Text style={{ color: i % 2 == 0 ? color.color1 : color.color2 }}>Add To Cart</Text></Button>
                 </TouchableOpacity>
 
             </View>
