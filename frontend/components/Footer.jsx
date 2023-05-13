@@ -32,7 +32,7 @@ const Footer = ({ activeRoute = 'home' }) => {
                     <Avatar.Icon icon={activeRoute === 'cart' ? 'shopping' : 'shopping-outline'} style={{ color: color.color3, backgroundColor: color.color1, }} />
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => navigationHandler(2)}>
-                    <Avatar.Icon icon={activeRoute === 'profile' ? 'account' : 'account-outline'} style={{ color: color.color3, backgroundColor: color.color1, }} />
+                    <Avatar.Icon icon={isAuthanticated == true ? activeRoute === 'profile' ? 'account' : 'account-outline' : 'login'} style={{ color: color.color3, backgroundColor: color.color1, }} />
                 </TouchableOpacity>
             </View>
             <View

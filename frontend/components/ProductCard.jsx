@@ -4,9 +4,9 @@ import { color } from '../styles/style'
 import { Image } from 'react-native'
 import { Button } from 'react-native-paper'
 
-const ProductCard = ({ stock, name, price, image, id, addToCartHandler, key, i, navigate }) => {
+const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navigate }) => {
     return (
-        <TouchableOpacity activeOpacity={1} onPress={() => navigate.navigate('productdetails', { id })} key={i}>
+        <TouchableOpacity activeOpacity={1} onPress={() => navigate.navigate('productdetails', { id })} >
             {/*  */}
             <View style={{
                 width: 220, elevation: 5,

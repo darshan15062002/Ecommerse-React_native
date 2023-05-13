@@ -3,7 +3,7 @@ import React from 'react'
 import { Avatar } from 'react-native-paper'
 import { color } from '../styles/style'
 import { useNavigation, useRoute } from '@react-navigation/native'
-const Header = ({ back, emptyCart = false }) => {
+const Header = ({ back, emptyCart }) => {
     const navigate = useNavigation()
     const route = useRoute()
     const emptycarthandler = () => {

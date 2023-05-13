@@ -7,6 +7,7 @@ import SearchModal from '../components/SearchModal'
 import ProductCard from '../components/ProductCard'
 import { useNavigation } from '@react-navigation/native'
 import Footer from '../components/Footer'
+import Heading from '../components/Heading'
 // import { defaultstyling } from '../styles/style'
 const catogories = [{ name: 'bag', _id: 'bdfb' }, { name: 'college', _id: 'bsdvb' }, { name: 'bottle', _id: 'bsdafb' }, { name: 'watch', _id: 'bewdfb' }, { name: 'pants', _id: 'bdhfb' }, { name: 'shirt', _id: 'dbdfb' }, { name: 'jeans', _id: 'bftdfb' }]
 const products = [{ price: 1000, name: 'Campus', _id: 1, imgUrl: 'https://freepngimg.com/thumb/shoes/27428-5-nike-shoes-transparent-background.png' },
@@ -30,17 +31,14 @@ const Home = () => {
 
     }
     return (
-        <><Header back={false} />
+        <><Header back={false} emptyCart={false} />
             {activesearch && <SearchModal searchquery={searchquery} setSearchQuery={setSearchQuery} setActiveSearch={setActiveSearch} products={products} />}
             <View style={defaultstyling}>
 
 
                 <View style={{ paddingTop: 70, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     {/* Heading */}
-                    <View>
-                        <Text style={{ fontSize: 25 }} >Our</Text>
-                        <Text style={{ fontSize: 25, fontWeight: '900' }}>Product</Text>
-                    </View>
+                    <Heading text1={'Our'} text2={'Product'} />
                     {/* SearchBar */}
                     <View>
                         <TouchableOpacity onPress={() => setActiveSearch((prev) => !prev)}>
