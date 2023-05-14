@@ -5,18 +5,39 @@ import { Avatar, Button } from 'react-native-paper'
 import ButtonBox from '../components/ButtonBox'
 import Footer from '../components/Footer'
 import Loading from '../components/Loading'
+import { useNavigation } from '@react-navigation/native'
 
 const user = {
     name: 'darshan',
     email: 'darshan@gmail.com'
 }
 const loading = false
-const Profile = ({ navigation }) => {
-
+const Profile = () => {
+    const navigation = useNavigation()
     const [avatar, setAvatar] = useState(null)
 
-    const navigateHandler = () => {
+    const navigateHandler = (text) => {
+        switch (text) {
+            case "Admin":
+                navigation.navigate("adminpanel");
+                break;
+            case "Orders":
+                navigation.navigate("orders");
+                break;
+            case "Password":
+                navigation.navigate("changepassword");
+                break;
+            case "Profile":
+                navigation.navigate("updateprofile");
+                break;
+            case "Sign-Out":
+                logoutHandler()
+                break;
 
+        }
+    }
+    const logoutHandler = () => {
+        console.log("sign out");
     }
 
 

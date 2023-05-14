@@ -12,6 +12,9 @@ import Register from './screens/Register'
 import Forget from './screens/Forget'
 import Verify from './screens/Verify'
 import Profile from './screens/Profile'
+import UpdateProfile from './screens/UpdateProfile'
+import UpdatePassword from './screens/UpdatePassword'
+import Orders from './screens/Orders'
 
 
 
@@ -36,6 +39,9 @@ const Main = () => {
                     <Stack.Screen name='forget-password' component={Forget} />
                     <Stack.Screen name='verify' component={Verify} />
                     <Stack.Screen name='profile' component={Profile} />
+                    <Stack.Screen name='updateprofile' component={UpdateProfile} />
+                    <Stack.Screen name='changepassword' component={UpdatePassword} />
+                    <Stack.Screen name='orders' component={Orders} />
 
 
 
