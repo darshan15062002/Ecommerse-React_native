@@ -4,6 +4,9 @@
   "description": "",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": ">=14 <15"
+  },
   "scripts": {
     "dev": "Set NODE_ENV=development&& nodemon .server.js",
     "start": "Set NODE_ENV=production&& node .server.js"
