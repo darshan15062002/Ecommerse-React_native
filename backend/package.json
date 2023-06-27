@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "Set NODE_ENV=development&& nodemon ./server/server.js",
-    "start": "Set NODE_ENV=production&& node ./server/server.js"
+    "dev": "Set NODE_ENV=development&& nodemon .server.js",
+    "start": "Set NODE_ENV=production&& node .server.js"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.2",
     "nodemon": "^2.0.22",
-    "stripe": "^12.10.0",
+    "stripe": "^10.17.0",
     "validator": "^13.9.0"
   }
 }

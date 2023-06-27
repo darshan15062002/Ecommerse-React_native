@@ -200,8 +200,12 @@ export const getAllAdminProducts = asyncError(async (req, res, next) => {
     const products = await Product.find({}).populate("category")
     // populating mean hay take the category id and use category model and give with product details
 
+    const outOfStock = product.filter((item, index) => { item.stock === 0 })
+
     res.status(200).json({
         success: true,
-        products
+        products,
+        outOfStock: outOfStock.length,
+        instock: products.length - outOfStock.length
     })
 })

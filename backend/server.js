@@ -1,10 +1,12 @@
-import app from "../app.js"
-import { connectDB } from "./data/database.js";
+import app from "./app.js"
+import { connectDB } from "./server/data/database.js";
 import cloudinary from "cloudinary";
-
+import Stripe from 'stripe';
 
 connectDB();
 
+const secret = process.env.STRIPE_SECRET
+export const stripe = new Stripe(secret);
 
 
 cloudinary.v2.config({
@@ -12,6 +14,7 @@ cloudinary.v2.config({
     api_key: process.env.CLOUDINARY_APIKEY,
     api_secret: process.env.CLOUDINARY_SECRET,
 });
+
 
 app.listen(process.env.PORT, () => {
     console.log(
