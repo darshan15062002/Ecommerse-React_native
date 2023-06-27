@@ -2,7 +2,7 @@ import express from 'express'
 import { config } from 'dotenv'
 import { errorMiddleware } from './server/middleWares/error.js'
 import cookieParser from 'cookie-parser'
-
+import cors from 'cors'
 
 
 import user from './server/routes/user.js'

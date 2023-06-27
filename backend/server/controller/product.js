@@ -3,7 +3,7 @@ import { Product } from "../models/product.js";
 import ErrorHandler from "../utils/error.js";
 import cloudinary from 'cloudinary'
 import { getDataUri } from "../utils/features.js";
-import { Error } from "mongoose";
+
 import { Category } from "../models/category.js";
 
 export const getAllProducts = asyncError(async (req, res, next) => {
