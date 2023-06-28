@@ -8,8 +8,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "Set NODE_ENV=development&& nodemon .server.js",
-    "start": "Set NODE_ENV=production&& node .server.js"
+    "dev": "Set NODE_ENV=development&& nodemon ./server.js",
+    "start": "Set NODE_ENV=production&& node ./server.js"
   },
   "keywords": [],
   "author": "",
