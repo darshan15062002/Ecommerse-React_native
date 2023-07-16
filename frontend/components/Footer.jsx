@@ -3,11 +3,13 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { color } from '../styles/style';
 import { Avatar } from 'react-native-paper';
+import { useSelector } from 'react-redux';
 
 const Footer = ({ activeRoute = 'home' }) => {
     const navigate = useNavigation();
-    const loading = false
-    const isAuthanticated = true;
+
+
+    const { loading, isAuthenticated } = useSelector((state) => state.user)
     const navigationHandler = (key) => {
         switch (key) {
             case 0:
@@ -17,14 +19,16 @@ const Footer = ({ activeRoute = 'home' }) => {
                 navigate.navigate('cart')
                 break
             case 2:
-                if (isAuthanticated) navigate.navigate('profile')
+                if (isAuthenticated) navigate.navigate('profile')
                 else navigate.navigate('login')
                 break
             default:
                 navigate.navigate('home')
                 break;
         }
+
     }
+
     return loading === false && (
         <View style={{ backgroundColor: color.color1, borderTopLeftRadius: 120, borderTopRightRadius: 120, }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
@@ -32,7 +36,7 @@ const Footer = ({ activeRoute = 'home' }) => {
                     <Avatar.Icon icon={activeRoute === 'cart' ? 'shopping' : 'shopping-outline'} style={{ color: color.color3, backgroundColor: color.color1, }} />
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => navigationHandler(2)}>
-                    <Avatar.Icon icon={isAuthanticated == true ? activeRoute === 'profile' ? 'account' : 'account-outline' : 'login'} style={{ color: color.color3, backgroundColor: color.color1, }} />
+                    <Avatar.Icon icon={isAuthenticated == true ? activeRoute === 'profile' ? 'account' : 'account-outline' : 'login'} style={{ color: color.color3, backgroundColor: color.color1, }} />
                 </TouchableOpacity>
             </View>
             <View

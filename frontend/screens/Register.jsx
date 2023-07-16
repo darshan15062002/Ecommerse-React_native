@@ -24,6 +24,17 @@ const Register = () => {
     const [cuntry, setCuntry] = useState("")
     const [pincode, setPincode] = useState("")
 
+    const myForm = new FormData();
+    myForm.append("name", name)
+    myForm.append("email", email)
+    myForm.append("password", password)
+    myForm.append("address", address)
+    myForm.append("city", city)
+    myForm.append("state", state)
+    myForm.append("cuntry", cuntry)
+    myForm.append("pincode", pincode)
+
+
 
 
     const defaultImg = 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1681309322~exp=1681309922~hmac=55c1e571f3834e0092b67fd2b20da268edc9283e1e9fadcea58549c70b24dcc5'

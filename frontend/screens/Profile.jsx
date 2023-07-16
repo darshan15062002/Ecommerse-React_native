@@ -6,19 +6,34 @@ import ButtonBox from '../components/ButtonBox'
 import Footer from '../components/Footer'
 import Loading from '../components/Loading'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../redux/actions/userActions'
+import { useMessageAndError } from '../utils/hooks'
 
-const user = {
-    name: 'darshan',
-    email: 'darshan@gmail.com'
-}
+
+// const user = {
+//     name: 'darshan',
+//     email: 'darshan@gmail.com'
+// }
 const loading = false
 const Profile = () => {
+    const dispatch = useDispatch()
     const navigation = useNavigation()
     const [avatar, setAvatar] = useState(null)
+    const { user } = useSelector((state) => state.user)
+
+
+    const logoutHandler = () => {
+        dispatch(logout())
+        console.log("sign-out");
+    }
+
+    const loading = useMessageAndError(navigation, dispatch, "login")
+
 
     const navigateHandler = (text) => {
         switch (text) {
-            case "Admin":
+            case "admin":
                 navigation.navigate("adminpanel");
                 break;
             case "Orders":
@@ -36,9 +51,8 @@ const Profile = () => {
 
         }
     }
-    const logoutHandler = () => {
-        console.log("sign out");
-    }
+
+
 
 
 
@@ -70,7 +84,7 @@ const Profile = () => {
 
                         }}>
                             <ButtonBox handler={navigateHandler} text={'Orders'} icon={'format-list-bulleted-square'} />
-                            <ButtonBox handler={navigateHandler} icon={'view-dashboard'} text={'Admin'} reverse={true} />
+                            <ButtonBox handler={navigateHandler} icon={'view-dashboard'} text={user?.role} reverse={true} />
                             <ButtonBox handler={navigateHandler} text={'Profile'} icon={'pencil'} />
 
                         </View>

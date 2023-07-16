@@ -10,13 +10,14 @@ import Footer from '../components/Footer'
 import Heading from '../components/Heading'
 // import { defaultstyling } from '../styles/style'
 const catogories = [{ name: 'bag', _id: 'bdfb' }, { name: 'college', _id: 'bsdvb' }, { name: 'bottle', _id: 'bsdafb' }, { name: 'watch', _id: 'bewdfb' }, { name: 'pants', _id: 'bdhfb' }, { name: 'shirt', _id: 'dbdfb' }, { name: 'jeans', _id: 'bftdfb' }]
-const products = [{ price: 1000, name: 'Campus', _id: 1, imgUrl: 'https://freepngimg.com/thumb/shoes/27428-5-nike-shoes-transparent-background.png' },
-{ price: 1000, name: 'Campus', _id: 2, imgUrl: 'https://freepngimg.com/thumb/shoes/21729-4-saucony-grid-9000.png' },
-{ price: 1000, name: 'Campus', _id: 3, imgUrl: 'https://freepngimg.com/thumb/shoes/27399-2-female-shoes-hd.png' },
-{ price: 1000, name: 'Campus', _id: 4, imgUrl: 'https://freepngimg.com/thumb/shoes/27518-9-nike-shoes-file.png' },
-{ price: 1000, name: 'Campus', _id: 5, imgUrl: 'https://freepngimg.com/thumb/shoes/26230-6-nike-shoes-clipart.png' },
-{ price: 1000, name: 'Campus', _id: 6, imgUrl: 'https://freepngimg.com/thumb/shoes/28084-5-sneaker-transparent-image.png' },
-{ price: 1000, name: 'Campus', _id: 7, imgUrl: 'https://freepngimg.com/thumb/shoes/21849-6-dock-shoes.png' }]
+export const products = [
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 1, imgUrl: 'https://freepngimg.com/thumb/shoes/27428-5-nike-shoes-transparent-background.png' },
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 2, imgUrl: 'https://freepngimg.com/thumb/shoes/21729-4-saucony-grid-9000.png' },
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 3, imgUrl: 'https://freepngimg.com/thumb/shoes/27399-2-female-shoes-hd.png' },
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 4, imgUrl: 'https://freepngimg.com/thumb/shoes/27518-9-nike-shoes-file.png' },
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 5, imgUrl: 'https://freepngimg.com/thumb/shoes/26230-6-nike-shoes-clipart.png' },
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 6, imgUrl: 'https://freepngimg.com/thumb/shoes/28084-5-sneaker-transparent-image.png' },
+    { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 7, imgUrl: 'https://freepngimg.com/thumb/shoes/21849-6-dock-shoes.png' }]
 const Home = () => {
     const navigate = useNavigation();
     const [catogory, setCatogory] = useState('')

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from './screens/Home'
@@ -15,15 +15,26 @@ import Profile from './screens/Profile'
 import UpdateProfile from './screens/UpdateProfile'
 import UpdatePassword from './screens/UpdatePassword'
 import Orders from './screens/Orders'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadUser } from './redux/actions/userActions'
+import Adminpanel from './screens/Adminpanel'
 
-
+const Stack = createNativeStackNavigator()
 
 
 
 
 
 const Main = () => {
-    const Stack = createNativeStackNavigator()
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(loadUser());
+    }, [dispatch]);
+
+
+
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName='home' screenOptions={{ headerShown: false }}>
@@ -43,7 +54,8 @@ const Main = () => {
                     <Stack.Screen name='changepassword' component={UpdatePassword} />
                     <Stack.Screen name='orders' component={Orders} />
 
-
+                    {/* admin panal */}
+                    <Stack.Screen name='adminpanel' component={Adminpanel} />
 
                 </Stack.Group>
             </Stack.Navigator>

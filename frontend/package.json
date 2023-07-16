@@ -11,13 +11,17 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
+    "mime": "^3.0.0",
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-paper": "^5.5.2",
     "react-native-snap-carousel": "^4.0.0-beta.6",
-    "react-native-toast-message": "^2.1.6"
+    "react-native-toast-message": "^2.1.6",
+    "react-redux": "^8.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
