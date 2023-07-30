@@ -4,16 +4,22 @@ import { color, defaultstyling, inputStyleing } from '../styles/style'
 import { Button, TextInput } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import Header from '../components/Header'
-const UpdatePassword = () => {
+import { useDispatch } from 'react-redux'
+import { updatePassword } from '../redux/actions/updateUserAction'
+import { useMessageAndErrorOther } from '../utils/hooks'
+const UpdatePassword = ({ navigation }) => {
     const navigate = useNavigation()
-
-    const loading = false
+    const dispatch = useDispatch()
+    const loading = useMessageAndErrorOther(dispatch)
 
     const [oldpassword, setOldPassword] = useState("")
     const [newpassword, setNewPassword] = useState("")
 
+
     const submitHandler = () => {
-        alert('yeah')
+        dispatch(updatePassword(oldpassword, newpassword))
+        setNewPassword("")
+        setOldPassword("")
     }
 
     const inputOption = {
@@ -31,8 +37,8 @@ const UpdatePassword = () => {
             </View>
 
             <View style={style.container}>
-                <TextInput {...inputOption} secureTextEntry={true} placeholder=' Old Password' value={oldpassword} onChangeText={setOldPassword} secureTextEntry={true} />
-                <TextInput {...inputOption} secureTextEntry={true} placeholder=' New Password' value={newpassword} onChangeText={setNewPassword} secureTextEntry={true} />
+                <TextInput {...inputOption} secureTextEntry={true} placeholder=' Old Password' value={oldpassword} onChangeText={setOldPassword} />
+                <TextInput {...inputOption} secureTextEntry={true} placeholder=' New Password' value={newpassword} onChangeText={setNewPassword} />
 
                 <TouchableOpacity activeOpacity={0.8} onPress={() => navigate.navigate('forget-password')}>
                     <Text style={style.forgotText}>Forgot Password</Text>

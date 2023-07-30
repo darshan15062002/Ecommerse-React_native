@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { color, defaultstyling, formHeading } from '../styles/style'
 import { Avatar, Button } from 'react-native-paper'
 import ButtonBox from '../components/ButtonBox'
@@ -16,7 +16,7 @@ import { useMessageAndError } from '../utils/hooks'
 //     email: 'darshan@gmail.com'
 // }
 const loading = false
-const Profile = () => {
+const Profile = ({ route }) => {
     const dispatch = useDispatch()
     const navigation = useNavigation()
     const [avatar, setAvatar] = useState(null)
@@ -27,6 +27,12 @@ const Profile = () => {
         dispatch(logout())
         console.log("sign-out");
     }
+
+    useEffect(() => {
+        if (route.params?.image) return setAvatar(route.params.image)
+
+
+    }, [route.params])
 
     const loading = useMessageAndError(navigation, dispatch, "login")
 

@@ -18,6 +18,12 @@ import Orders from './screens/Orders'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './redux/actions/userActions'
 import Adminpanel from './screens/Adminpanel'
+import Categories from './screens/Categories'
+import AdminOrders from './screens/AdminOrders'
+import EditProduct from './screens/EditProduct'
+import NewProduct from './screens/NewProduct'
+import ManageProductImages from './screens/ManageProductImages'
+import Camera from './screens/Camera'
 
 const Stack = createNativeStackNavigator()
 
@@ -56,7 +62,14 @@ const Main = () => {
 
                     {/* admin panal */}
                     <Stack.Screen name='adminpanel' component={Adminpanel} />
+                    <Stack.Screen name='categories' component={Categories} />
+                    <Stack.Screen name='adminorders' component={AdminOrders} />
+                    <Stack.Screen name='updateproduct' component={EditProduct} />
+                    <Stack.Screen name='newproduct' component={NewProduct} />
+                    <Stack.Screen name='productimages' component={ManageProductImages} />
 
+                    {/* camera */}
+                    <Stack.Screen name='camera' component={Camera} />
                 </Stack.Group>
             </Stack.Navigator>
             <Toast position='top' topOffset={80} />

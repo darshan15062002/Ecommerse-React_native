@@ -8,12 +8,26 @@ import ProductListHeading from '../components/ProductListHeading'
 import { products } from './Home'
 import ProductListItem from '../components/ProductListItem'
 import { useNavigation } from '@react-navigation/native'
+import Chart from '../components/Chart'
 
 const Adminpanel = () => {
     const loading = false
     const navigator = useNavigation()
-    const navigationHandler = () => {
-
+    const navigationHandler = (text) => {
+        switch (text) {
+            case "Category":
+                navigator.navigate("categories")
+                break
+            case "All Order":
+                navigator.navigate("adminorders")
+                break
+            case "Product":
+                navigator.navigate("newproduct")
+                break
+            default:
+                navigator.navigate("adminorders")
+                break
+        }
     }
 
     const deleteProductHandler = (id) => {
@@ -32,8 +46,11 @@ const Adminpanel = () => {
                             style={{
                                 backgroundColor: color.color3,
                                 borderRadius: 20,
-                                alignItems: "center"
+                                alignItems: "center",
+                                marginTop: 20
                             }}>
+
+                            <Chart inStock={15} outOfStock={4} />
 
                         </View >
 
@@ -44,9 +61,9 @@ const Adminpanel = () => {
                                 justifyContent: "space-between",
 
                             }}>
-                                <ButtonBox icon={"plus"} text={"Product"} handler={navigationHandler} />
-                                <ButtonBox icon={"format-list-bulleted-square"} text={"All Orders"} reverse={true} handler={navigationHandler} />
-                                <ButtonBox icon={"plus"} text={"Category"} handler={navigationHandler} />
+                                <ButtonBox icon={"plus"} text={"Product"} handler={() => navigationHandler("Product")} />
+                                <ButtonBox icon={"format-list-bulleted-square"} text={"All Orders"} reverse={true} handler={() => navigationHandler("All Order")} />
+                                <ButtonBox icon={"plus"} text={"Category"} handler={() => navigationHandler("Category")} />
                             </View>
                         </View>
 

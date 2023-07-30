@@ -14,7 +14,7 @@ const Mymodal = ({ id, deleteProductHandler, navigate, setOpenModal }) => {
                 <Avatar.Icon icon={'close'} size={25} style={{
                     backgroundColor: color.color1
                 }} />
-                <Text style={styles.text} onPress={() => navigate.navigate("updateproduct", { id })} >Edit</Text>
+                <Text style={styles.text} onPress={() => { navigate.navigate("updateproduct", { id }) }} >Edit</Text>
                 <Button textColor={color.color1} onPress={() => deleteProductHandler(id)}>Delete</Button>
             </TouchableOpacity>
         </View>

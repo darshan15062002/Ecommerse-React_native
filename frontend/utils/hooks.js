@@ -27,9 +27,40 @@ export const useMessageAndError = (navigate, dispatch, navigateTo = 'login') => 
             dispatch({
                 type: "clearMessage"
             })
+            dispatch(loadUser())
 
         }
     }, [error, message, dispatch])
     return loading
 }
+
+export const useMessageAndErrorOther = (dispatch, navigate, navigateTo, func) => {
+    const { loading, message, error } = useSelector((state) => state.updateUser)
+    useEffect(() => {
+        if (error) {
+            Toast.show({
+                type: "error",
+                text1: error
+            })
+            dispatch({
+                type: "clearError"
+            })
+        }
+        if (message) {
+
+            Toast.show({
+                type: "success",
+                text1: message
+            })
+            dispatch({
+                type: "clearMessage"
+            })
+            navigateTo ? navigate.navigate(navigateTo) : null
+            func ? dispatch(func()) : null
+
+        }
+    }, [error, message, dispatch])
+    return loading
+}
+
 

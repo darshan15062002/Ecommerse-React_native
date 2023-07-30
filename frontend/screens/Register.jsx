@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { color, defaultstyling, inputStyleing } from '../styles/style'
 import Heading from '../components/Heading'
 import { Button, TextInput } from 'react-native-paper'
@@ -8,7 +8,13 @@ import Footer from '../components/Footer'
 import { ScrollView } from 'react-native'
 import { Avatar } from 'react-native-paper'
 
-const Register = () => {
+const Register = ({ route }) => {
+
+    useEffect(() => {
+        if (route.params?.image) return setAvatar(route.params.image)
+
+
+    }, [route.params])
 
 
     const navigate = useNavigation()
@@ -70,7 +76,7 @@ const Register = () => {
                             alignSelf: 'center', backgroundColor: color.color1
                         }} size={80} source={{ uri: avatar ? avatar : defaultImg }} />
 
-                        <TouchableOpacity activeOpacity={0.8} onPress={navigate.navigate('camera')}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => navigate.navigate('camera')}>
                             <Button textColor={color.color2}>Change Photo</Button>
                         </TouchableOpacity>
 

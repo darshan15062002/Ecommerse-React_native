@@ -7,62 +7,63 @@ import Heading from '../components/Heading'
 import { Headline } from 'react-native-paper'
 import OrderItem from '../components/OrderItem'
 
+export const orders = [
+    {
+        _id: "defsvfvdfbs",
+        shippingInfo: {
+            address: "23 andinager",
+            city: "boisar",
+            country: "india",
+            pincode: 401501,
+        },
+        createdAt: "12-2-2023T2342",
+        orderStatus: "Processing",
+        paymentMethod: "COD",
+        totleAmount: 2000
+    },
+    {
+        _id: "dewsvfvdfbs",
+        shippingInfo: {
+            address: "23 andinager",
+            city: "boisar",
+            country: "india",
+            pincode: 401501,
+        },
+        createdAt: "12-2-2023T2342",
+        orderStatus: "Processing",
+        paymentMethod: "COD",
+        totleAmount: 2000
+    },
+    {
+        _id: "defsefvdfbs",
+        shippingInfo: {
+            address: "23 andinager",
+            city: "boisar",
+            country: "india",
+            pincode: 401501,
+        },
+        createdAt: "12-2-2023T2342",
+        orderStatus: "Processing",
+        paymentMethod: "COD",
+        totleAmount: 2000
+    },
+    {
+        _id: "defsvfvrefbs",
+        shippingInfo: {
+            address: "23 andinager",
+            city: "palgher",
+            country: "india",
+            pincode: 403501,
+        },
+        createdAt: "22-2-2023T2342",
+        orderStatus: "Shiped",
+        paymentMethod: "ONLINE",
+        totleAmount: 4000
+    }
+]
 const Orders = () => {
     const loading = false
-    const orders = [
-        {
-            _id: "defsvfvdfbs",
-            shippingInfo: {
-                address: "23 andinager",
-                city: "boisar",
-                country: "india",
-                pincode: 401501,
-            },
-            createdAt: "12-2-2023T2342",
-            orderStatus: "Processing",
-            paymentMethod: "COD",
-            totleAmount: 2000
-        },
-        {
-            _id: "dewsvfvdfbs",
-            shippingInfo: {
-                address: "23 andinager",
-                city: "boisar",
-                country: "india",
-                pincode: 401501,
-            },
-            createdAt: "12-2-2023T2342",
-            orderStatus: "Processing",
-            paymentMethod: "COD",
-            totleAmount: 2000
-        },
-        {
-            _id: "defsefvdfbs",
-            shippingInfo: {
-                address: "23 andinager",
-                city: "boisar",
-                country: "india",
-                pincode: 401501,
-            },
-            createdAt: "12-2-2023T2342",
-            orderStatus: "Processing",
-            paymentMethod: "COD",
-            totleAmount: 2000
-        },
-        {
-            _id: "defsvfvrefbs",
-            shippingInfo: {
-                address: "23 andinager",
-                city: "palgher",
-                country: "india",
-                pincode: 403501,
-            },
-            createdAt: "22-2-2023T2342",
-            orderStatus: "Shiped",
-            paymentMethod: "ONLINE",
-            totleAmount: 4000
-        }
-    ]
+
     return (
         <View style={{ ...defaultstyling, backgroundColor: color.color5 }}>
             <Header back={true} />
