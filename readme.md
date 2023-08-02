@@ -1,4 +1,3 @@
-<img width="119" alt="Screenshot 2023-08-02 095419" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/1202fda4-088e-4b7c-952e-f4495e3d8dfd">
 
 # React Native eCommerce App
 
@@ -6,12 +5,11 @@
 <img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/690b146e-1822-4b4a-9ccb-68b4d965a790">
 <img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/068483d1-cc24-46b2-8686-00aee15dcd91">
 <img width="119" alt="Screenshot 2023-08-02 095419" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/8b2aed21-32d7-43c5-aace-bf7c2ed3ee7d">
-<img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/188ccde0-4741-4725-809a-3c13c63e0ddd">
-<img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/9892b90f-ebcb-4668-828e-64100aa02602">
-<img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/15bb1456-85f0-486f-9cd6-73dc56069380">
+<img width="118" alt="Screenshot 2023-08-02 093021" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/f1f7dc8a-3f43-494a-a25e-8e516617b2de">
 <img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/a380487c-d8d6-4f37-b691-0f0a7cabd5c1">
 <img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/5690de7c-4fa9-4594-bcb8-df652318482d">
 <img width="118" alt="Screenshot 2023-08-02 092450" src="https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/6b8a8738-7fa9-475e-8711-271bd0e28b5c">
+
 
 
 
