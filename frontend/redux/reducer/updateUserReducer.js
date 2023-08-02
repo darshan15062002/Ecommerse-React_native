@@ -3,12 +3,32 @@ import { createReducer } from '@reduxjs/toolkit'
 export const updateUserReducer = createReducer({}, (builder) => {
     builder.addCase('updatePasswordRequest', (state) => {
         state.loading = true
-    }).addCase('updatePasswordSuccess', (state, action) => {
+    }).addCase('updateProfileRequest', (state) => {
+        state.loading = true
+    }).addCase('updateProfilePicRequest', (state) => {
+        state.loading = true
+    })
+
+    builder.addCase('updatePasswordSuccess', (state, action) => {
         state.loading = false;
         state.message = action.payload
-    }).addCase('updatePasswordFailed', (state, action) => {
-        state.loading = false
+    }).addCase('updateProfileSuccess', (state, action) => {
+        state.loading = false;
         state.message = action.payload
+    }).addCase('updateProfilePicSuccess', (state, action) => {
+        state.loading = false;
+        state.message = action.payload
+    })
+
+    builder.addCase('updatePasswordFailed', (state, action) => {
+        state.loading = false
+        state.error = action.payload
+    }).addCase('updateProfileFailed', (state, action) => {
+        state.loading = false;
+        state.error = action.payload
+    }).addCase('updateProfilePicFailed', (state, action) => {
+        state.loading = false;
+        state.error = action.payload
     })
 
 

@@ -5,10 +5,12 @@ import { Avatar, Button } from 'react-native-paper'
 import ButtonBox from '../components/ButtonBox'
 import Footer from '../components/Footer'
 import Loading from '../components/Loading'
-import { useNavigation } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../redux/actions/userActions'
-import { useMessageAndError } from '../utils/hooks'
+import { loadUser, logout } from '../redux/actions/userActions'
+import { useMessageAndError, useMessageAndErrorOther } from '../utils/hooks'
+import mime from 'mime'
+import { updateProfilePic } from '../redux/actions/updateUserAction'
 
 
 // const user = {
@@ -18,23 +20,42 @@ import { useMessageAndError } from '../utils/hooks'
 const loading = false
 const Profile = ({ route }) => {
     const dispatch = useDispatch()
+    const isFocused = useIsFocused()
     const navigation = useNavigation()
-    const [avatar, setAvatar] = useState(null)
+
     const { user } = useSelector((state) => state.user)
+    const [avatar, setAvatar] = useState(user?.avatar.url)
+
 
 
     const logoutHandler = () => {
         dispatch(logout())
         console.log("sign-out");
     }
+    const loading = useMessageAndError(navigation, dispatch, "login")
+
+    const loadingPic = useMessageAndErrorOther(dispatch, null, null, loadUser())
 
     useEffect(() => {
-        if (route.params?.image) return setAvatar(route.params.image)
+        if (route.params?.image) {
+            setAvatar(route.params.image)
+
+            // dispatch update pic here
+            const myForm = new FormData()
+            myForm.append("file", {
+                uri: route.params.image,
+                type: mime.getType(route.params.image),
+                name: route.params.image.split("/").pop(),
+            })
+            dispatch(updateProfilePic(myForm))
+        }
+
+        dispatch(loadUser())
 
 
-    }, [route.params])
+    }, [route.params, dispatch, isFocused])
 
-    const loading = useMessageAndError(navigation, dispatch, "login")
+
 
 
     const navigateHandler = (text) => {
@@ -76,7 +97,7 @@ const Profile = ({ route }) => {
                         <Avatar.Image size={100}
                             source={{ uri: avatar }} style={{ backgroundColor: color.color1 }} />
 
-                        <TouchableOpacity onPress={() => navigation.navigate('camera', { updateProfile: true })}>
+                        <TouchableOpacity disabled={loadingPic} onPress={() => navigation.navigate('camera', { updateProfile: true })}>
                             <Button textColor={color.color1}>Change Photo</Button>
                         </TouchableOpacity>
                         <Text style={styles.name}>{user?.name}</Text>

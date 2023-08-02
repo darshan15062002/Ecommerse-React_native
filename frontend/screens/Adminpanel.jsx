@@ -37,7 +37,7 @@ const Adminpanel = () => {
         <View style={defaultstyling}>
             <Header back={true} />
             <View style={{ marginTop: 80 }}>
-                <Text style={formHeading}>Profile</Text>
+                <Text style={formHeading}>Admin Profile</Text>
             </View>
             {
                 loading ? (<Loading />) : (

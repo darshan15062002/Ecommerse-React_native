@@ -55,8 +55,8 @@ export const useMessageAndErrorOther = (dispatch, navigate, navigateTo, func) =>
             dispatch({
                 type: "clearMessage"
             })
-            navigateTo ? navigate.navigate(navigateTo) : null
-            func ? dispatch(func()) : null
+            navigateTo && navigate.navigate(navigateTo)
+            func && dispatch(func())
 
         }
     }, [error, message, dispatch])

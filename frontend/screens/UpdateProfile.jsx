@@ -1,37 +1,44 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { color, defaultstyling, inputStyleing } from '../styles/style'
 
 import { Button, TextInput } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import { ScrollView } from 'react-native'
 import Header from '../components/Header'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateProfile } from '../redux/actions/updateUserAction'
+import { useMessageAndErrorOther } from '../utils/hooks'
 const UpdateProfile = () => {
 
-
+    const dispatch = useDispatch()
     const navigate = useNavigation()
-
-    const loading = false
-
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [cuntry, setCuntry] = useState("")
-    const [pincode, setPincode] = useState("")
+    const { user } = useSelector((state) => state.user)
 
 
+    const [name, setName] = useState(user?.name)
+    const [email, setEmail] = useState(user?.email)
+
+    const [address, setAddress] = useState(user?.address)
+    const [city, setCity] = useState(user?.city)
+    const [country, setCountry] = useState(user?.country)
+    const [pinCode, setPinCode] = useState(user?.pinCode)
+
+
+
+
+
+    const loading = useMessageAndErrorOther(dispatch, navigate, "profile")
 
 
 
     const submitHandler = () => {
-        alert('yeah')
-        navigate.navigate('verify')
+        dispatch(updateProfile(name, email, address, city, country, pinCode))
+
+        // navigate.navigate('verify')
     }
 
-    const disabledBtn = !name || !email || !password || !address || !city || !state || !cuntry || !pincode
+    const disabledBtn = !name || !email || !address || !city || !country || !pinCode
     const inputOption = {
         mode: 'outlined',
         style: inputStyleing,
@@ -67,9 +74,8 @@ const UpdateProfile = () => {
                     <TextInput {...inputOption} placeholder='Email' value={email} onChangeText={setEmail} keyboardType='email-address' />
                     <TextInput {...inputOption} placeholder='Address' value={address} onChangeText={setAddress} />
                     <TextInput {...inputOption} placeholder='City' value={city} onChangeText={setCity} />
-                    <TextInput {...inputOption} placeholder='State' value={state} onChangeText={setState} />
-                    <TextInput {...inputOption} placeholder='Cuntry' value={cuntry} onChangeText={setCuntry} />
-                    <TextInput {...inputOption} placeholder='Pincode' value={pincode} onChangeText={setPincode} keyboardType='email-address' />
+                    <TextInput {...inputOption} placeholder='Cuntry' value={country} onChangeText={setCountry} />
+                    <TextInput {...inputOption} maxLength={6} placeholder='PinCode' value={`${pinCode}`} onChangeText={setPinCode} keyboardType='number-pad' />
 
 
                     <Button loading={loading} style={style.btn} disabled={disabledBtn} onPress={submitHandler} textColor={color.color2}>Update</Button>

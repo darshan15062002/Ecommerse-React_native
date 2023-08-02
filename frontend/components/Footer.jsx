@@ -30,7 +30,12 @@ const Footer = ({ activeRoute = 'home' }) => {
     }
 
     return loading === false && (
-        <View style={{ backgroundColor: color.color1, borderTopLeftRadius: 120, borderTopRightRadius: 120, }}>
+        <View style={{
+            backgroundColor: color.color1, borderTopLeftRadius: 120, borderTopRightRadius: 120,
+            position: 'absolute',
+            width: '100%',
+            bottom: 0
+        }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => navigationHandler(1)}>
                     <Avatar.Icon icon={activeRoute === 'cart' ? 'shopping' : 'shopping-outline'} style={{ color: color.color3, backgroundColor: color.color1, }} />

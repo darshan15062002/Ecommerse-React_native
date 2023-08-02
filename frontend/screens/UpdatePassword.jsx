@@ -43,7 +43,7 @@ const UpdatePassword = ({ navigation }) => {
                 <TouchableOpacity activeOpacity={0.8} onPress={() => navigate.navigate('forget-password')}>
                     <Text style={style.forgotText}>Forgot Password</Text>
                 </TouchableOpacity>
-                <Button loading={loading} style={style.btn} disabled={oldpassword === "" || newpassword === "" ? true : false} onPress={submitHandler} textColor={color.color2}>Change</Button>
+                <Button textColor={color.color2} loading={loading} style={style.btn} disabled={oldpassword === "" || newpassword === "" ? true : false} onPress={submitHandler} >Change</Button>
 
             </View>
         </View>
