@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const schema = new mongoose.Schema({
-    category: {
+    Category: {
         type: String,
         require: [true, "please enter category"]
     }

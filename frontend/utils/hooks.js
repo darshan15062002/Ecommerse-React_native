@@ -1,6 +1,8 @@
+import axios from "axios"
 import { useEffect } from "react"
 import { Toast } from "react-native-toast-message/lib/src/Toast"
 import { useSelector } from "react-redux"
+import { server } from "../redux/store"
 
 
 export const useMessageAndError = (navigate, dispatch, navigateTo = 'login') => {
@@ -61,6 +63,21 @@ export const useMessageAndErrorOther = (dispatch, navigate, navigateTo, func) =>
         }
     }, [error, message, dispatch])
     return loading
+}
+
+export const useSetCategory = (setCategory, isFocused) => {
+    useEffect(() => {
+        axios.get(`${server}/api/v1/product/categoryes`).then((res) => {
+            setCategory(res.data.categoryes)
+        }).catch(error => {
+            Toast.show({
+                type: 'error',
+                text1: error.response.data.message
+            })
+        })
+
+    }, [isFocused])
+
 }
 
 

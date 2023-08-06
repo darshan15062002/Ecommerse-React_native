@@ -95,7 +95,7 @@ const Profile = ({ route }) => {
                 loading ? <Loading /> : <>
                     <View style={styles.container}>
                         <Avatar.Image size={100}
-                            source={{ uri: avatar }} style={{ backgroundColor: color.color1 }} />
+                            source={{ uri: avatar ? avatar : null }} style={{ backgroundColor: color.color1 }} />
 
                         <TouchableOpacity disabled={loadingPic} onPress={() => navigation.navigate('camera', { updateProfile: true })}>
                             <Button textColor={color.color1}>Change Photo</Button>

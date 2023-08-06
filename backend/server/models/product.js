@@ -20,7 +20,7 @@ const schema = new mongoose.Schema({
 
     images: [{ public_id: String, url: String }],
 
-    category: {
+    Category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
     },

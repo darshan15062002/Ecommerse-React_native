@@ -1,5 +1,5 @@
 import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { color, defaultstyling } from '../styles/style';
 import Header from '../components/Header'
 import Carousel from 'react-native-snap-carousel';
@@ -7,6 +7,9 @@ import { StyleSheet } from 'react-native';
 import { Image } from 'react-native';
 import { Avatar, Button } from 'react-native-paper';
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
+import { getProductDetails } from '../redux/actions/productAction';
 
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH
@@ -23,9 +26,13 @@ const images = [{ price: 1000, name: 'campuse', _id: 1, imgUrl: 'https://freepng
 { price: 1000, name: 'campuse', _id: 7, imgUrl: 'https://freepngimg.com/thumb/shoes/21849-6-dock-shoes.png' }]
 
 const ProductDetails = ({ route }) => {
-    const [quantity, setQuantity] = useState(12)
-    const isCarousel = useRef(null)
     console.log(route.params.id);
+    const dispatch = useDispatch()
+    const isFocuse = useIsFocused()
+    const [quantity, setQuantity] = useState(12)
+
+    const isCarousel = useRef(null)
+
 
     const incrementQty = () => {
         if (quantity >= stock) return
@@ -48,6 +55,11 @@ const ProductDetails = ({ route }) => {
     }
 
 
+    useEffect(() => {
+        dispatch(getProductDetails(route.params.id))
+    }, [dispatch, route.params.id, isFocuse])
+    const { product } = useSelector(state => state.product)
+    console.log(product, "product");
 
     return (
         <View style={{ ...defaultstyling, padding: 0, backgroundColor: color.color1 }}>

@@ -17,7 +17,7 @@ export const updatePassword = (oldPassword, newPassword) => async (dispatch) => 
             "withCredentials": true
         })
 
-        console.log(data, "darshan");
+        // console.log(data, "darshan");
         dispatch({ type: 'updatePasswordSuccess', payload: data.message })
 
     } catch (error) {
@@ -52,27 +52,30 @@ export const updateProfile = (name, email, address, city, country, pinCode) => a
 }
 
 
+
 export const updateProfilePic = (formData) => async (dispatch) => {
-
-
     try {
-        dispatch({ type: 'updateProfileRequest' })
+        dispatch({
+            type: "updateProfilePicRequest",
+        });
 
-        // Axios
-        const { data } = await axios.put(`${server}/api/v1/user/updatepic`, {
-            formData
-        }, {
+        const { data } = await axios.put(`${server}/api/v1/user/updatepic`, formData, {
             headers: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "multipart/form-data",
             },
-            "withCredentials": true
-        })
+            withCredentials: true,
+        });
 
-        console.log(data, "darshan");
-        dispatch({ type: 'updateProfileSuccess', payload: data.message })
-
+        dispatch({
+            type: "updateProfilePicSuccess",
+            payload: data.message,
+        });
     } catch (error) {
-        console.log(error, "error darshan");
-        dispatch({ type: 'updateProfileFailed', payload: error.response.data.message })
+        dispatch({
+            type: "updateProfilePicFailed",
+            payload: error.response.data.message,
+        });
     }
-}
+};
+
+

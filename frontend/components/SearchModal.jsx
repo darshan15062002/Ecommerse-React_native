@@ -26,7 +26,7 @@ const SearchModal = ({ searchquery, setSearchQuery, products, setActiveSearch })
                         {
                             products.map((item, index) => (
                                 <SearchItem key={item._id}
-                                    imgUrl={item.imgUrl}
+                                    imgUrl={item.images[0].url}
                                     name={item.name}
                                     price={item.price}
                                     handler={() => navigate.navigate('productdetails', { id: item._id })} />
