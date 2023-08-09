@@ -6,33 +6,56 @@ import Heading from '../components/Heading'
 import { Button } from 'react-native-paper'
 import Cartitem from '../components/Cartitem'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 
-export const cartItem = [{
-    name: 'compus',
-    price: '120',
-    image: 'https://freepngimg.com/thumb/shoes/27428-5-nike-shoes-transparent-background.png',
-    product: 1,
-    stock: 2,
-    quentity: 5
-},
-{
-    name: 'paragon',
-    price: '100',
-    image: 'https://freepngimg.com/thumb/shoes/21729-4-saucony-grid-9000.png',
-    product: 2,
-    stock: 4,
-    quentity: 2
-}]
+
 
 const Cart = () => {
+    const dispatch = useDispatch()
+    const { cartItem } = useSelector(state => state.cart)
 
     const navigate = useNavigation()
-    const incrementHendler = (id, qty, stock) => {
-        console.log('incre');
-    }
-    const decrementHandler = (id, qty) => {
+
+    const incrementHendler = (id, name, price, image, stock, qty) => {
+        // console.log(id, name, price, image, stock, quntity, 'inc');
+        const newQty = qty + 1
+        if (stock <= qty) return Toast.show({
+            type: 'error',
+            text1: "Maximum value added"
+        })
+
+        dispatch({
+            type: 'addToCart',
+            payload: {
+                product: id,
+                name, price, image, stock, quntity: newQty
+            }
+        })
+
 
     }
+
+    const decrementHandler = (id, name, price, image, stock, qty) => {
+        // console.log("decreasing");
+        const newQty = qty - 1
+        if (1 >= qty) return dispatch({
+            type: 'removeFromCart',
+            payload: id
+        })
+
+        dispatch({
+            type: 'addToCart', payload: {
+                product: id,
+                name, price, image, stock, quntity: newQty
+            }
+        })
+
+
+
+    }
+
+
     return (
         <View style={{
             ...defaultstyling, padding: 0
@@ -54,8 +77,8 @@ const Cart = () => {
 
             }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    {
-                        cartItem.map((item, index) => (
+                    {cartItem?.length > 0 ?
+                        cartItem?.map((item, index) => (
                             <Cartitem
                                 key={item.product}
                                 price={item.price}
@@ -63,12 +86,16 @@ const Cart = () => {
                                 stock={item.stock}
                                 image={item.image}
                                 index={index}
-                                qty={item.quentity}
+                                qty={item.quntity}
                                 id={item.product}
                                 navigate={navigate}
                                 incrementHendler={incrementHendler}
                                 decrementHandler={decrementHandler} />
-                        ))
+                        )) : (<Text style={{
+                            textAlign: 'center',
+                            fontWeight: '900',
+                            fontSize: 18
+                        }}>No item yet</Text>)
                     }</ScrollView>
             </View>
 
@@ -84,7 +111,8 @@ const Cart = () => {
 
 
             </View>
-            <TouchableOpacity activeOpacity={0.8} onPress={cartItem.length > 0 ? () => navigate.navigate('conformorder') : null}>
+            {/* <TouchableOpacity activeOpacity={0.8} onPress={cartItem.length > 0 ? () => navigate.navigate('conformorder') : null}> */}
+            <TouchableOpacity activeOpacity={0.8} onPress={2 > 0 ? () => navigate.navigate('conformorder') : null}>
                 <Button icon={'cart'} textColor={color.color2} style={{
                     backgroundColor: color.color3,
                     margin: 20,

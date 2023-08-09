@@ -11,18 +11,8 @@ import Heading from '../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllAdminProduct, getAllProduct } from '../redux/actions/productAction'
 import { useSetCategory } from '../utils/hooks'
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
 // import { defaultstyling } from '../styles/style'
-const catogories = [{ name: 'bag', _id: 'bdfb' }, { name: 'college', _id: 'bsdvb' }, { name: 'bottle', _id: 'bsdafb' }, { name: 'watch', _id: 'bewdfb' }, { name: 'pants', _id: 'bdhfb' }, { name: 'shirt', _id: 'dbdfb' }, { name: 'jeans', _id: 'bftdfb' }]
-// export const products = [
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 1, imgUrl: 'https://freepngimg.com/thumb/shoes/27428-5-nike-shoes-transparent-background.png' },
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 2, imgUrl: 'https://freepngimg.com/thumb/shoes/21729-4-saucony-grid-9000.png' },
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 3, imgUrl: 'https://freepngimg.com/thumb/shoes/27399-2-female-shoes-hd.png' },
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 4, imgUrl: 'https://freepngimg.com/thumb/shoes/27518-9-nike-shoes-file.png' },
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 5, imgUrl: 'https://freepngimg.com/thumb/shoes/26230-6-nike-shoes-clipart.png' },
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 6, imgUrl: 'https://freepngimg.com/thumb/shoes/28084-5-sneaker-transparent-image.png' },
-//     { price: 1000, category: "shoe", stock: 4, name: 'Campus', _id: 7, imgUrl: 'https://freepngimg.com/thumb/shoes/21849-6-dock-shoes.png' }]
-
-
 
 
 
@@ -32,6 +22,7 @@ const catogories = [{ name: 'bag', _id: 'bdfb' }, { name: 'college', _id: 'bsdvb
 const Home = () => {
     const navigate = useNavigation();
     const dispatch = useDispatch()
+    const { cartItem } = useSelector(state => state.cart)
     const { products } = useSelector((state) => state.product)
     const [catogory, setCatogory] = useState('')
     const [catogories, setCatogories] = useState([])
@@ -45,6 +36,7 @@ const Home = () => {
     const categoryButtonHandler = (id) => {
         setCatogory(id)
         console.log(id);
+
     }
 
 
@@ -61,9 +53,40 @@ const Home = () => {
 
 
 
-    const addToCartHandler = (id) => {
+    const addToCartHandler = (id, name, price, image, stock) => {
 
+
+        if (stock === 0) {
+            Toast.show({
+                type: 'error',
+                text1: 'Out Of Stock'
+            })
+        }
+        // console.log(cartItem);
+        // for (let i = 0; i < cartItem.length; i++) {
+        //     if (cartItem[i].product === id) {
+        //         return navigate.navigate("cart")
+        //     }
+
+        // }
+
+        dispatch({
+            type: 'addToCart',
+            payload: {
+                product: id,
+                name, price, image, stock, quntity: 1
+            }
+        })
+
+
+        Toast.show({
+            type: 'success',
+            text1: 'Added to cart'
+        })
     }
+
+
+
     return (
         <><Header back={false} emptyCart={false} />
             {activesearch && <SearchModal searchquery={searchquery} setSearchQuery={setSearchQuery} setActiveSearch={setActiveSearch} products={products} />}
@@ -93,7 +116,7 @@ const Home = () => {
 
                 <View style={{ flex: 1 }}>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        {products?.map((item, index) => (<ProductCard stock={item.stock} name={item.name} price={item.price} image={item.images[0].url} addToCartHandler={addToCartHandler(item._id)} id={item._id} key={item._id} i={index} navigate={navigate} />))}
+                        {products?.map((item, index) => (<ProductCard stock={item.stock} name={item.name} price={item.price} image={item.images[0].imgUrl} addToCartHandler={addToCartHandler} id={item._id} key={item._id} i={index} navigate={navigate} />))}
                     </ScrollView>
 
                 </View>

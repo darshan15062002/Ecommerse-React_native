@@ -7,7 +7,7 @@ import { Avatar } from 'react-native-paper'
 
 const Cartitem = ({
 
-    qty, price, name, index, image, stock, id, incrementHendler, decrementHandler, navigate
+    price, name, index, qty, image, stock, id, incrementHendler, decrementHandler, navigate
 }) => {
 
     return (
@@ -54,8 +54,8 @@ const Cartitem = ({
                 justifyContent: 'space-between',
                 alignContent: 'center',
             }}>
-                <TouchableOpacity onPress={decrementHandler(id, qty)}>
-                    <Avatar.Icon icon={'minus'} size={20} style={{
+                <TouchableOpacity onPress={() => incrementHendler(id, name, price, image, stock, qty)}>
+                    <Avatar.Icon icon={'plus'} size={20} style={{
                         backgroundColor: color.color5,
                         height: 25,
                         width: 25,
@@ -63,8 +63,8 @@ const Cartitem = ({
                     }} />
                 </TouchableOpacity>
                 <Text style={style.qtyText} >{qty}</Text>
-                <TouchableOpacity onPress={incrementHendler(id, qty, stock)}>
-                    <Avatar.Icon icon={'plus'} size={20} style={{
+                <TouchableOpacity onPress={() => decrementHandler(id, name, price, image, stock, qty)}>
+                    <Avatar.Icon icon={'minus'} size={20} style={{
                         backgroundColor: color.color5,
                         height: 25,
                         width: 25,

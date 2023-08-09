@@ -8,6 +8,7 @@ export const productReducer = createReducer({
 
 
     builder.addCase("getAllProductRequest", (state) => {
+
         state.loading = true
     }).addCase("getAllAdminProductRequest", (state) => {
         state.loading = true
@@ -20,6 +21,7 @@ export const productReducer = createReducer({
     builder.addCase("getAllProductSuccess", (state, action) => {
         state.loading = false
         state.products = action.payload
+        // console.log(state.products, "available product");
 
     }).addCase("getAllAdminProductSuccess", (state, action) => {
         state.loading = false
