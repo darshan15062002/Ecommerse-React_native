@@ -1,21 +1,27 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { color, defaultstyling } from '../styles/style'
 import Header from '../components/Header'
 import Heading from '../components/Heading'
 import Conformorderitem from '../components/Conformorderitem'
-import { cartItem } from './Cart'
+
 import { useNavigation } from '@react-navigation/native'
 import { Button } from 'react-native-paper'
+import { useSelector } from 'react-redux'
 
-const itemsprice = 12000
-const shippingCharges = 20
-const tax = 0.18 * itemsprice
-const totleAmount = itemsprice + shippingCharges + tax
+
+
 const Conformorder = () => {
 
 
     const navigate = useNavigation()
+    const { cartItem } = useSelector(state => state.cart)
+
+
+    const itemsprice = useState(cartItem.reduce())
+    const shippingCharges = 20
+    const tax = 0.18 * itemsprice
+    const totleAmount = itemsprice + shippingCharges + tax
     return (
         <View style={{
             ...defaultstyling
