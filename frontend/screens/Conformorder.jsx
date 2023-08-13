@@ -18,10 +18,11 @@ const Conformorder = () => {
     const { cartItem } = useSelector(state => state.cart)
 
 
-    const itemsprice = useState(cartItem.reduce())
-    const shippingCharges = 20
-    const tax = 0.18 * itemsprice
-    const totleAmount = itemsprice + shippingCharges + tax
+    const [itemsprice] = useState(cartItem.reduce((prv, cur) => prv + cur.quntity * cur.price, 0))
+    console.log(itemsprice);
+    const [shippingCharges] = useState(itemsprice > 10000 ? 0 : 200)
+    const [tax] = useState(Number((itemsprice * 0.18).toFixed()))
+    const [totleAmount] = useState(itemsprice + shippingCharges + tax)
     return (
         <View style={{
             ...defaultstyling

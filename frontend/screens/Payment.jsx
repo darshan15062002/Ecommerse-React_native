@@ -8,20 +8,58 @@ import { RadioButton } from 'react-native-paper'
 import { TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
+import { useDispatch, useSelector } from 'react-redux'
+import { createOrder } from '../redux/actions/updateUserAction'
+import { useMessageAndErrorOther } from '../utils/hooks'
+import Loading from '../components/Loading'
 
 const Payment = ({ route }) => {
     const navigate = useNavigation()
 
     const [paymentMethod, setPaymentMethod] = useState("COD")
-    console.log(paymentMethod);
-    const isAuthanticated = false
+    const dispatch = useDispatch()
+
+    const { isAuthenticated, user } = useSelector((state) => state.user)
+    const { cartItem } = useSelector((state) => state.cart)
+    console.log(isAuthenticated);
     const redirectToLogin = () => {
         navigate.navigate('login')
     }
     const onlineHandler = () => { }
-    const codHandler = () => { }
+
+
+    const codHandler = (paymentInfo) => {
+        const shippingInfo = {
+            address: user.address,
+            city: user.city,
+            country: user.country,
+            pinCode: user.pinCode,
+
+        }
+
+
+        const orderItems = cartItem
+        const paymentMethod = "COD"
+        const itemsPrice = route.params.itemsPrice
+        const taxPrice = route.params.tax
+        const shippingCharges = route.params.shippingCharges
+        const totleAmount = route.params.totleAmount
+
+        dispatch(createOrder(shippingInfo,
+            orderItems,
+            paymentMethod,
+            itemsPrice,
+            taxPrice,
+            shippingCharges,
+            totleAmount,
+            paymentInfo))
+    }
+
+    const loading = useMessageAndErrorOther(dispatch, navigate, "profile", () => ({
+        type: "clearCart"
+    }))
     return (
-        <View style={{ ...defaultstyling }}>
+        loading ? <Loading /> : (<View style={{ ...defaultstyling }}>
             <Header back={true} emptyCart={false} />
             <Heading text1={'Payment'} text2={'Method'} containerStyle={{ paddingTop: 70 }} />
 
@@ -42,14 +80,15 @@ const Payment = ({ route }) => {
                 </RadioButton.Group>
             </View>
             <TouchableOpacity onPress={
-                !isAuthanticated ? redirectToLogin : paymentMethod == 'COD' ? codHandler : onlineHandler
+                !isAuthenticated ? redirectToLogin : paymentMethod == 'COD' ? codHandler : onlineHandler
             }>
                 <Button style={style.btn} icon={paymentMethod == 'COD' ? 'check-circle' : 'circle-multiple-outline'} textColor={color.color2} >
                     {
                         paymentMethod == 'COD' ? 'Place Order' : 'Pay'
                     }</Button >
             </TouchableOpacity>
-        </View>
+        </View>)
+
     )
 }
 const style = StyleSheet.create({

@@ -78,4 +78,43 @@ export const updateProfilePic = (formData) => async (dispatch) => {
     }
 };
 
+export const createOrder = (
+    shippingInfo,
+    orderItems,
+    paymentMethod,
+    itemsPrice,
+    taxPrice,
+    shippingCharges,
+    totleAmount) => async (dispatch) => {
+
+
+        try {
+            dispatch({ type: 'placeOrderdRequest' })
+            console.log(oldPassword, newPassword);
+            // Axios
+            const { data } = await axios.post(`${server}/api/v1/order/new`, {
+                shippingInfo,
+                orderItems,
+                paymentMethod,
+                itemsPrice,
+                taxPrice,
+                shippingCharges,
+                totleAmount
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+            })
+
+            // console.log(data, "darshan");
+            dispatch({ type: 'placeOrderSuccess', payload: data.message })
+
+        } catch (error) {
+            console.log(error, "error darshan");
+            dispatch({ type: 'placeOrderFailed', payload: error.response.data.message })
+        }
+    }
+
+
 

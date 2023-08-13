@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView, useAnimatedValue } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { color, defaultstyling } from '../styles/style'
 import Header from '../components/Header'
 import Heading from '../components/Heading'
@@ -14,6 +14,7 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast'
 const Cart = () => {
     const dispatch = useDispatch()
     const { cartItem } = useSelector(state => state.cart)
+    const [totle] = useState(cartItem.reduce((prv, cur) => prv + cur.quntity * cur.price, 0))
 
     const navigate = useNavigation()
 
@@ -106,8 +107,8 @@ const Cart = () => {
                 paddingHorizontal: 35,
                 justifyContent: 'space-between'
             }}>
-                <Text>5 Items</Text>
-                <Text>$5</Text>
+                <Text>{cartItem.length} Items</Text>
+                <Text>$ {totle}</Text>
 
 
             </View>

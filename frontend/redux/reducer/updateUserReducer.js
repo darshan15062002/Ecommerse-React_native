@@ -7,6 +7,8 @@ export const updateUserReducer = createReducer({}, (builder) => {
         state.loading = true
     }).addCase('updateProfilePicRequest', (state) => {
         state.loading = true
+    }).addCase('placeOrderRequest', (state) => {
+        state.loading = true
     })
 
     builder.addCase('updatePasswordSuccess', (state, action) => {
@@ -18,6 +20,9 @@ export const updateUserReducer = createReducer({}, (builder) => {
     }).addCase('updateProfilePicSuccess', (state, action) => {
         state.loading = false;
         state.message = action.payload
+    }).addCase('placeOrderSuccess', (state, action) => {
+        state.loading = false;
+        state.message = action.payload
     })
 
     builder.addCase('updatePasswordFailed', (state, action) => {
@@ -27,6 +32,9 @@ export const updateUserReducer = createReducer({}, (builder) => {
         state.loading = false;
         state.error = action.payload
     }).addCase('updateProfilePicFailed', (state, action) => {
+        state.loading = false;
+        state.error = action.payload
+    }).addCase('placeOrderFailed', (state, action) => {
         state.loading = false;
         state.error = action.payload
     })

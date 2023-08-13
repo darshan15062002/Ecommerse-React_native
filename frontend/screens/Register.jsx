@@ -69,7 +69,8 @@ const Register = ({ route }) => {
                     padding: 20,
                     elevation: 10,
                     borderRadius: 10,
-                    backgroundColor: color.color3
+                    backgroundColor: color.color3,
+
                 }}>
                     <View style={{ minHeight: 950 }}>
                         <Avatar.Image icon={'image'} style={{
