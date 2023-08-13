@@ -16,7 +16,6 @@ import UpdateProfile from './screens/UpdateProfile'
 import UpdatePassword from './screens/UpdatePassword'
 import Orders from './screens/Orders'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadUser } from './redux/actions/userActions'
 import Adminpanel from './screens/Adminpanel'
 import Categories from './screens/Categories'
 import AdminOrders from './screens/AdminOrders'
@@ -24,6 +23,7 @@ import EditProduct from './screens/EditProduct'
 import NewProduct from './screens/NewProduct'
 import ManageProductImages from './screens/ManageProductImages'
 import Camera from './screens/Camera'
+import { loadUser } from './redux/actions/userActions'
 
 const Stack = createNativeStackNavigator()
 

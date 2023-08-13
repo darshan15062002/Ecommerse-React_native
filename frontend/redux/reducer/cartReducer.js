@@ -6,8 +6,7 @@ export const cartReducer = createReducer({ cartItem: [] }, (builder) => {
 
 
         item = action.payload
-        console.log(state.cartItem, "prveous");
-        console.log(item, "new");
+
 
         const isExist = state.cartItem.find((i) => i.product === item.product)
 

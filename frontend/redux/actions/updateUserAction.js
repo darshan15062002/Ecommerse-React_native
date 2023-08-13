@@ -82,39 +82,43 @@ export const createOrder = (
     shippingInfo,
     orderItems,
     paymentMethod,
+    paymentInfo,
     itemsPrice,
     taxPrice,
     shippingCharges,
-    totleAmount) => async (dispatch) => {
+    totleAmount,
+) => async (dispatch) => {
 
 
-        try {
-            dispatch({ type: 'placeOrderdRequest' })
-            console.log(oldPassword, newPassword);
-            // Axios
-            const { data } = await axios.post(`${server}/api/v1/order/new`, {
-                shippingInfo,
-                orderItems,
-                paymentMethod,
-                itemsPrice,
-                taxPrice,
-                shippingCharges,
-                totleAmount
-            }, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
+    try {
+        dispatch({ type: 'placeOrderdRequest' })
 
-            })
+        // Axios
+        const { data } = await axios.post(`${server}/api/v1/order/new`, {
+            shippingInfo,
+            orderItems,
+            paymentMethod,
+            paymentInfo,
+            itemsPrice,
+            taxPrice,
+            shippingCharges,
+            totleAmount,
 
-            // console.log(data, "darshan");
-            dispatch({ type: 'placeOrderSuccess', payload: data.message })
+        }, {
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-        } catch (error) {
-            console.log(error, "error darshan");
-            dispatch({ type: 'placeOrderFailed', payload: error.response.data.message })
-        }
+        })
+
+
+        dispatch({ type: 'placeOrderSuccess', payload: data.message })
+
+    } catch (error) {
+        console.log(error.response.data);
+        dispatch({ type: 'placeOrderFailed', payload: error.response.data.message })
     }
+}
 
 
 
