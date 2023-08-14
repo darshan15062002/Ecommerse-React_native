@@ -26,21 +26,6 @@ https://github.com/darshan15062002/Ecommerse-React_native/assets/101007397/446e0
 
 This project is a mobile eCommerce app built using React Native for the frontend and Node.js for the backend. The app allows users to browse products, add items to their cart, and make purchases using RESTful APIs to interact with the backend.
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/react-native-ecommerce.git
-   cd react-native-ecommerce
 
 
 
