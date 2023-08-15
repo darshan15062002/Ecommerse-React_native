@@ -5,12 +5,13 @@ import Header from '../components/Header'
 import Loading from '../components/Loading'
 import ButtonBox from '../components/ButtonBox'
 import ProductListHeading from '../components/ProductListHeading'
-import { products } from './Home'
+
 import ProductListItem from '../components/ProductListItem'
 import { useNavigation } from '@react-navigation/native'
 import Chart from '../components/Chart'
 
 const Adminpanel = () => {
+    const products = []
     const loading = false
     const navigator = useNavigation()
     const navigationHandler = (text) => {
@@ -71,7 +72,7 @@ const Adminpanel = () => {
                         <ScrollView showsVerticalScrollIndicator={false}>
                             <View>
                                 {
-                                    products.map((item, index) => (
+                                    products?.map((item, index) => (
                                         <ProductListItem key={item._id} i={index}
                                             id={item._id}
                                             navigate={navigator}

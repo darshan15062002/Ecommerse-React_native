@@ -1,8 +1,9 @@
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Toast } from "react-native-toast-message/lib/src/Toast"
 import { useSelector } from "react-redux"
 import { server } from "../redux/store"
+import { loadUser } from "../redux/actions/userActions"
 
 
 export const useMessageAndError = (navigate, dispatch, navigateTo = 'login') => {
@@ -79,5 +80,32 @@ export const useSetCategory = (setCategory, isFocused) => {
     }, [isFocused])
 
 }
+export const useGetOrders = (isFocused, isAdmin = false) => {
+    const [orders, setOrders] = useState([])
+    const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        setLoading(true)
+        axios.get(`${server}/api/v1/order/${isAdmin ? "admin" : "my"}`).then((res) => {
+
+            setOrders(res.data.order)
+            setLoading(false)
+        }).catch(error => {
+            setLoading(false)
+            Toast.show({
+                type: 'error',
+                text1: error.response.data.message
+            })
+        })
+
+
+
+    }, [isFocused])
+
+    return { loading, orders }
+
+}
+
+
+
 
 

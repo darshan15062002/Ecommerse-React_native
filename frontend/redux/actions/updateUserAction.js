@@ -122,3 +122,28 @@ export const createOrder = (
 
 
 
+export const processOrder = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: "processOrderRequest",
+        });
+
+        const { data } = await axios.put(`${server}/api/v1/order/single/${id}`,
+            {},
+
+            { withCredentials: true, }
+
+        );
+
+
+        dispatch({
+            type: "processOrderSuccess",
+            payload: data.message,
+        });
+    } catch (error) {
+        dispatch({
+            type: "processOrderFailed",
+            payload: error.response.data.message,
+        });
+    }
+};

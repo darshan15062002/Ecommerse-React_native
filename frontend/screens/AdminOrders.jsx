@@ -5,15 +5,23 @@ import Header from '../components/Header'
 import Loading from '../components/Loading'
 import OrderItem from '../components/OrderItem'
 import { Headline } from 'react-native-paper'
-import { orders } from './Orders'
+import { useGetOrders, useMessageAndErrorOther } from '../utils/hooks'
+import { useIsFocused } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
+import { processOrder } from '../redux/actions/updateUserAction'
 
-const AdminOrders = () => {
 
-    const loading = false
-    const updateHandler = () => {
+const AdminOrders = ({ navigation }) => {
+    const isFocuse = useIsFocused()
+    const dispatch = useDispatch()
+    const { loading, orders } = useGetOrders(isFocuse, isAdmin = true)
 
+    const processOrderLoading = useMessageAndErrorOther(dispatch, navigation, navagate = "adminpanel")
+
+    const updateHandler = (id) => {
+        dispatch(processOrder(id))
     }
-    const processOrderLoading = false
+
     return (
         <View style={{ ...defaultstyling, backgroundColor: color.color5 }}>
 
@@ -29,7 +37,7 @@ const AdminOrders = () => {
                     flex: 1
                 }}>
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {orders.length > 0 ? (
+                        {orders?.length > 0 ? (
 
                             orders.map((item, index) => (
                                 <OrderItem
