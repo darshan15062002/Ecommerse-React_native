@@ -6,22 +6,22 @@ import Loading from '../components/Loading'
 import OrderItem from '../components/OrderItem'
 import { Headline } from 'react-native-paper'
 import { useGetOrders, useMessageAndErrorOther } from '../utils/hooks'
-import { useIsFocused } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { processOrder } from '../redux/actions/updateUserAction'
 
 
-const AdminOrders = ({ navigation }) => {
+const AdminOrders = () => {
     const isFocuse = useIsFocused()
     const dispatch = useDispatch()
+    const navigate = useNavigation()
     const { loading, orders } = useGetOrders(isFocuse, isAdmin = true)
 
-    const processOrderLoading = useMessageAndErrorOther(dispatch, navigation, navagate = "adminpanel")
+    const processOrderLoading = useMessageAndErrorOther(dispatch, navigate, "adminpanel")
 
     const updateHandler = (id) => {
-        dispatch(processOrder(id))
-    }
-
+        dispatch(processOrder(id));
+    };
     return (
         <View style={{ ...defaultstyling, backgroundColor: color.color5 }}>
 

@@ -34,26 +34,6 @@ const Profile = ({ route }) => {
     }
     const loading = useMessageAndError(navigation, dispatch, "login")
 
-    const loadingPic = useMessageAndErrorOther(dispatch, null, null, loadUser())
-
-    useEffect(() => {
-        if (route.params?.image) {
-            setAvatar(route.params.image)
-
-            // dispatch update pic here
-            const myForm = new FormData()
-            myForm.append("file", {
-                uri: route.params.image,
-                type: mime.getType(route.params.image),
-                name: route.params.image.split("/").pop(),
-            })
-            dispatch(updateProfilePic(myForm))
-        }
-
-        dispatch(loadUser())
-
-
-    }, [route.params, dispatch, isFocused])
 
 
 
@@ -79,6 +59,28 @@ const Profile = ({ route }) => {
         }
     }
 
+    const loadingPic = useMessageAndErrorOther(dispatch, null, null, loadUser)
+
+
+
+    useEffect(() => {
+        if (route.params?.image) {
+            setAvatar(route.params.image)
+
+            // dispatch update pic here
+            const myForm = new FormData()
+            myForm.append("file", {
+                uri: route.params.image,
+                type: mime.getType(route.params.image),
+                name: route.params.image.split("/").pop(),
+            })
+            dispatch(updateProfilePic(myForm))
+        }
+
+        dispatch(loadUser())
+
+
+    }, [route.params, dispatch, isFocused])
 
 
 
