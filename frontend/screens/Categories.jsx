@@ -20,7 +20,7 @@ const Categories = ({ navigation }) => {
     const [category, setCategory] = useState("")
     const [categories, setCategories] = useState([])
 
-    console.log(categories);
+    // console.log(categories);
 
     const categoryHandler = (text) => {
         console.log(text);
