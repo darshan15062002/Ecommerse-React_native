@@ -147,3 +147,69 @@ export const processOrder = (id) => async (dispatch) => {
         });
     }
 };
+
+
+
+export const newProduct = (formData) => async (dispatch) => {
+    console.log(formData);
+    try {
+        dispatch({
+            type: "newProductRequest",
+        });
+
+        const { data } = await axios.post(`${server}/api/v1/product/new`, formData,
+
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                withCredentials: true,
+            }
+
+        );
+
+        console.log(data);
+
+
+        dispatch({
+            type: "newProductSuccess",
+            payload: data.message,
+        });
+    } catch (error) {
+        dispatch({
+            type: "newProductFailed",
+            payload: error.response.data.message,
+        });
+    }
+};
+
+export const addCategory = (category) => async (dispatch) => {
+    try {
+        dispatch({
+            type: "addCategoryRequest",
+        });
+
+        const { data } = await axios.post(
+            `${server}/api/v1/product/category`,
+
+            {
+                category,
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            }
+        );
+        dispatch({
+            type: "addCategorySuccess",
+            payload: data.message,
+        });
+    } catch (error) {
+        dispatch({
+            type: "addCategoryFailed",
+            payload: error.response.data.message,
+        });
+    }
+};

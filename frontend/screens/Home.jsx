@@ -62,13 +62,7 @@ const Home = () => {
                 text1: 'Out Of Stock'
             })
         }
-        // console.log(cartItem);
-        // for (let i = 0; i < cartItem.length; i++) {
-        //     if (cartItem[i].product === id) {
-        //         return navigate.navigate("cart")
-        //     }
 
-        // }
 
         dispatch({
             type: 'addToCart',

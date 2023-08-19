@@ -39,6 +39,7 @@ export const useMessageAndError = (navigate, dispatch, navigateTo = 'login') => 
 
 export const useMessageAndErrorOther = (dispatch, navigate, navigateTo, func) => {
     const { loading, message, error } = useSelector((state) => state.updateUser)
+    console.log(loading, message, error);
     useEffect(() => {
         if (error) {
             Toast.show({

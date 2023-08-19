@@ -34,7 +34,7 @@ const Main = () => {
 
     const dispatch = useDispatch()
 
-    dispatch(loadUser());
+
 
     useEffect(() => {
         dispatch(loadUser());

@@ -12,7 +12,7 @@ const CameraScreen = ({ navigation, route }) => {
     const [camera, setCamera] = useState(null)
 
 
-
+    console.log(route.params?.newProduct);
     const openImagePicker = async () => {
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (!permissionResult) return alert("Permission to access gallery is require")
@@ -23,8 +23,8 @@ const CameraScreen = ({ navigation, route }) => {
             quality: 1
         })
         console.log(data);
-        console.log(route.params?.nawProduct);
-        if (route.params?.newproduct) return navigation.navigate('newproduct', {
+
+        if (route.params?.newProduct) return navigation.navigate('newproduct', {
             image: data.assets[0].uri
         })
         if (route.params?.updateproduct) return navigation.navigate('productimages', {
@@ -44,7 +44,7 @@ const CameraScreen = ({ navigation, route }) => {
         const data = await camera.takePictureAsync()
         console.log(data);
 
-        if (route.params?.newproduct) return navigation.navigate('newproduct', {
+        if (route.params?.newProduct) return navigation.navigate('newproduct', {
             image: data.uri
         })
         if (route.params?.updateproduct) return navigation.navigate('productimages', {

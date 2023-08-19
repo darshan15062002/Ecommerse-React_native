@@ -8,33 +8,32 @@ import { Avatar, Button, TextInput } from 'react-native-paper'
 
 import { inputOption } from './Categories'
 import SelectComponent from '../components/SelectComponent'
-import { useNavigation } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
+import { useMessageAndErrorOther, useSetCategory } from '../utils/hooks'
+import { useDispatch } from 'react-redux'
+import { newProduct } from '../redux/actions/updateUserAction'
+import mime from 'mime'
 
-const NewProduct = ({ route }) => {
+const NewProduct = ({ route, navigation }) => {
     const navigate = useNavigation()
-    const loading = false
 
-    const submitHandle = () => {
-        console.log(name, description, price, stock, categoryID);
+    const isFoucsed = useIsFocused()
+    const dispatch = useDispatch()
 
-    }
+
     const [image, setImage] = useState("")
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [stock, setStock] = useState("")
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState("Select Category")
     const [categoryID, setCategoryID] = useState("")
-    const [categorys, setCategorys] = useState([{
-        _id: 'bdsjbesd', category: 'shoe'
-    },
-    {
-        _id: 'bdsjbefd', category: 'Slipper'
-    },
-    {
-        _id: 'bdsjffsd', category: 'Sport Shoe'
-    }])
+    const [categorys, setCategorys] = useState([])
     const [visible, setVisible] = useState(false)
+
+    useSetCategory(setCategorys, isFoucsed)
+    const disableBtnCondition =
+        !name || !description || !price || !stock || !image;
 
 
     useEffect(() => {
@@ -42,6 +41,29 @@ const NewProduct = ({ route }) => {
 
 
     }, [route.params])
+
+    const submitHandle = () => {
+        console.log(name, description, price, stock, image, categoryID);
+
+        const myForm = new FormData();
+        myForm.append("name", name);
+        myForm.append("description", description);
+        myForm.append("price", price);
+        myForm.append("stock", stock);
+        myForm.append("file", {
+            uri: image,
+            type: mime.getType(image),
+            name: image.split("/").pop(),
+        })
+        if (categoryID) myForm.append("category", categoryID);
+
+        dispatch(newProduct(myForm))
+
+
+    }
+
+    const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel");
+
 
 
 
@@ -106,7 +128,7 @@ const NewProduct = ({ route }) => {
                                 }}
                                     onPress={submitHandle}
                                     loading={loading}
-                                    disabled={loading}
+                                    disabled={disableBtnCondition || loading}
                                 >
                                     Create
                                 </Button>

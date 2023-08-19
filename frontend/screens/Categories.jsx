@@ -3,36 +3,38 @@ import React, { useState } from 'react'
 import { color, defaultstyling, formHeading, inputStyleing } from '../styles/style'
 import Header from '../components/Header'
 import { Avatar, Button, TextInput } from 'react-native-paper'
+import { useMessageAndErrorOther, useSetCategory } from '../utils/hooks'
+import { useIsFocused } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
+import { addCategory } from '../redux/actions/updateUserAction'
 export const inputOption = {
     mode: 'outlined',
     style: inputStyleing,
     activeOutlineColor: color.color1
 }
-const Categories = () => {
-    const loading = true
+const Categories = ({ navigation }) => {
+
+    const isFocuse = useIsFocused()
+    const dispatch = useDispatch()
 
     const [category, setCategory] = useState("")
+    const [categories, setCategories] = useState([])
+
+    console.log(categories);
 
     const categoryHandler = (text) => {
+        console.log(text);
+        dispatch(addCategory(text))
 
     }
+    const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel",)
 
-    const categories = [{
-        name: "Shoe",
-        _id: "dvdfbdsbgbrtt"
-    },
-    {
-        name: "slipper",
-        _id: "dvdffvbdsbgbrtt"
-    },
-    {
-        name: "Formal Shoe",
-        _id: "dvsdvfbdsbgbrtt"
-    },
-    ]
+    useSetCategory(setCategories, isFocuse)
+
 
     const deleteHandler = (id) => {
-        console.log("dt");
+        console.log(id);
+
     }
 
 
@@ -54,7 +56,7 @@ const Categories = () => {
                 }}>
                     {
                         categories.map((item, index) => (
-                            <CategoriesCard name={item.name} id={item._id} key={item._id} deleteHandler={deleteHandler} />
+                            <CategoriesCard name={item.category} id={item._id} key={item._id} deleteHandler={deleteHandler} />
                         ))
                     }
 
@@ -67,7 +69,7 @@ const Categories = () => {
                 <Button textColor={color.color2} style={{
                     backgroundColor: color.color1,
                     margin: 20, padding: 6
-                }} onPress={() => categoryHandler} loading={loading}>Add</Button>
+                }} onPress={() => categoryHandler(category)} loading={loading}>Add</Button>
             </View>
 
         </View>
