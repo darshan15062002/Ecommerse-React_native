@@ -37,7 +37,7 @@ router.route("/images/:id").post(isAuthenticated, isAdmin, singleUpload, addProd
 router.post("/category", isAuthenticated, isAdmin, addCategory)
 
 router.get("/categoryes", getAllCategory)
-router.delete("/category/:id", isAdmin, deleteCategory)
+router.delete("/category/:id", isAuthenticated, isAdmin, deleteCategory)
 
 
 

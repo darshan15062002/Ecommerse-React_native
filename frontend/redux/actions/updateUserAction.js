@@ -213,3 +213,28 @@ export const addCategory = (category) => async (dispatch) => {
         });
     }
 };
+
+
+export const deleteCategory = (id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: "deleteCategoryRequest",
+        });
+
+        const { data } = await axios.delete(
+            `${server}/api/v1/product/category/${id}`,
+            {
+                withCredentials: true,
+            }
+        );
+        dispatch({
+            type: "deleteCategorySuccess",
+            payload: data.message,
+        });
+    } catch (error) {
+        dispatch({
+            type: "deleteCategoryFailed",
+            payload: error.response.data.message,
+        });
+    }
+};

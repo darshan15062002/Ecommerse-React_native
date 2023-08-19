@@ -6,7 +6,7 @@ import { Avatar, Button, TextInput } from 'react-native-paper'
 import { useMessageAndErrorOther, useSetCategory } from '../utils/hooks'
 import { useIsFocused } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
-import { addCategory } from '../redux/actions/updateUserAction'
+import { addCategory, deleteCategory } from '../redux/actions/updateUserAction'
 export const inputOption = {
     mode: 'outlined',
     style: inputStyleing,
@@ -27,16 +27,16 @@ const Categories = ({ navigation }) => {
         dispatch(addCategory(text))
 
     }
-    const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel",)
+
 
     useSetCategory(setCategories, isFocuse)
 
 
     const deleteHandler = (id) => {
-        console.log(id);
+        dispatch(deleteCategory(id))
 
     }
-
+    const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel",)
 
     return (
         <View style={defaultstyling}>
