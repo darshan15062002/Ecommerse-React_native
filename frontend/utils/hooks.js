@@ -4,6 +4,7 @@ import { Toast } from "react-native-toast-message/lib/src/Toast"
 import { useSelector } from "react-redux"
 import { server } from "../redux/store"
 import { loadUser } from "../redux/actions/userActions"
+import { getAllAdminProduct } from "../redux/actions/productAction"
 
 
 export const useMessageAndError = (navigate, dispatch, navigateTo = 'login') => {
@@ -106,7 +107,41 @@ export const useGetOrders = (isFocused, isAdmin = false) => {
 
 }
 
+export const useAdminProduct = (dispatch, isFocused) => {
+
+    const { products, inStock, outOfStock, error, loading } = useSelector((state) => state.product)
+    useEffect(() => {
+
+        if (error) {
+            Toast.show({
+                type: 'error',
+                text1: error
+            })
+            dispatch({ type: 'clearError' })
+        }
+
+        dispatch(getAllAdminProduct)
+
+    }, [isFocused, dispatch, error])
 
 
 
+    return { products, inStock, outOfStock, loading }
+
+}
+
+export const useDeleteAdminProduct = async (id) => {
+
+
+    try {
+        axios.delete(`${server}/api/v1/product/single/${id}`)
+    } catch (error) {
+
+    }
+
+
+
+    return { products, inStock, outOfStock, loading }
+
+}
 

@@ -238,3 +238,32 @@ export const deleteCategory = (id) => async (dispatch) => {
         });
     }
 };
+
+export const updateProductDetails = (id, name, description, price, stock, category) => async (dispatch) => {
+
+    try {
+        dispatch({
+            type: "updateProductRequest",
+
+        })
+
+        // Axios
+        const { data } = await axios.put(`${server}/api/v1/product/single/${id}`, {
+
+            "withCredentials": true
+        })
+
+
+        dispatch({
+            type: "updateProductSuccess",
+            payload: data.message
+        })
+
+    } catch (error) {
+
+        dispatch({
+            type: "updateProductFailed",
+            payload: error.response.data.message
+        })
+    }
+}

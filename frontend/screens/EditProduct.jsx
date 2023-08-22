@@ -1,20 +1,43 @@
 import { View, Text, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { color, defaultstyling, formHeading, inputStyleing } from '../styles/style'
 
 import Header from '../components/Header'
 import Loading from '../components/Loading'
 import { Button, TextInput } from 'react-native-paper'
-import { useNavigation } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { inputOption } from './Categories'
 import SelectComponent from '../components/SelectComponent'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductDetails, updateProductDetails } from '../redux/actions/productAction'
+import { useMessageAndErrorOther, useSetCategory } from '../utils/hooks'
 
 const EditProduct = ({ route }) => {
     const navigate = useNavigation()
+    const dispatch = useDispatch()
+    const isFoucsed = useIsFocused()
     const loading = false
-    const loadingOther = false
+
+    const { product } = useSelector((state) => state.product)
+    console.log(product);
+    const [categorys, setCategorys] = useState([])
+    const [name, setName] = useState(product?.name)
+    const [description, setDescription] = useState(product?.description)
+    const [price, setPrice] = useState(`${product?.price}`)
+    const [stock, setStock] = useState(`${product?.stock}`)
+    const [category, setCategory] = useState(product?.category || "Select Category")
+    const [categoryID, setCategoryID] = useState("")
+
+
+
+
+
+
     const submitHandle = () => {
-        console.log(name, description, price, stock, categoryID);
+        console.log(name, description, price, stock, category = categoryID);
+
+        dispatch(updateProductDetails(name, description, price, stock, category = categoryID))
+
 
     }
     const [id] = useState(route.params.id)
@@ -29,22 +52,17 @@ const EditProduct = ({ route }) => {
             _id: 'dfbknrgnvknsv s'
         }
     ]
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [price, setPrice] = useState("")
-    const [stock, setStock] = useState("")
-    const [category, setCategory] = useState("")
-    const [categoryID, setCategoryID] = useState("")
-    const [categorys, setCategorys] = useState([{
-        _id: 'bdsjbesd', category: 'shoe'
-    },
-    {
-        _id: 'bdsjbefd', category: 'Slipper'
-    },
-    {
-        _id: 'bdsjffsd', category: 'Sport Shoe'
-    }])
+
+
     const [visible, setVisible] = useState(false)
+
+    const loadingOther = useMessageAndErrorOther(dispatch, navigate, 'adminPanel')
+
+    useSetCategory(setCategorys, isFoucsed)
+    useEffect(() => {
+        dispatch(getProductDetails(id))
+
+    }, [dispatch, id, isFoucsed])
 
 
     return (

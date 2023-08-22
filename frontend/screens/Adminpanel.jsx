@@ -7,12 +7,14 @@ import ButtonBox from '../components/ButtonBox'
 import ProductListHeading from '../components/ProductListHeading'
 
 import ProductListItem from '../components/ProductListItem'
-import { useNavigation } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import Chart from '../components/Chart'
+import { useAdminProduct } from '../utils/hooks'
+import { useDispatch } from 'react-redux'
 
 const Adminpanel = () => {
-    const products = []
-    const loading = false
+    const dispatch = useDispatch()
+    const isFoused = useIsFocused()
     const navigator = useNavigation()
     const navigationHandler = (text) => {
         switch (text) {
@@ -31,8 +33,12 @@ const Adminpanel = () => {
         }
     }
 
+    const { products, inStock, outOfStock, loading } = useAdminProduct(dispatch, isFoused)
+
+
     const deleteProductHandler = (id) => {
         console.log("Deleting Product")
+
     }
     return (
         <View style={defaultstyling}>
@@ -81,7 +87,7 @@ const Adminpanel = () => {
                                             stock={item.stock}
                                             category={item.category}
                                             name={item.name}
-                                            image={item.imgUrl} />
+                                            image={item.images[0].imgUrl} />
                                     ))
                                 }
                             </View>
