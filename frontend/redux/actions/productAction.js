@@ -56,7 +56,7 @@ export const getAllAdminProduct = () => async (dispatch) => {
 
 
 export const getProductDetails = (id) => async (dispatch) => {
-
+    console.log(id, "found product");
     try {
         dispatch({
             type: "getProductDetaileRequest",
@@ -65,18 +65,17 @@ export const getProductDetails = (id) => async (dispatch) => {
 
         // Axios
         const { data } = await axios.get(`${server}/api/v1/product/single/${id}`, {
-
             "withCredentials": true
         })
 
-
+        console.log(data, "found product");
         dispatch({
             type: "getProductDetaileSuccess",
             payload: data.products
         })
 
     } catch (error) {
-
+        console.log(error.response.data.message, "found product");
         dispatch({
             type: "getProductDetaileFailed",
             payload: error.response.data.message

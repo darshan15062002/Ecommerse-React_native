@@ -25,7 +25,7 @@ export const getAllProducts = asyncError(async (req, res, next) => {
 })
 
 export const getProductDetails = asyncError(async (req, res, next) => {
-    const products = await Product.findById(req.params.id).populate("Category")
+    const products = await Product.findById(req.params.id).populate("category")
     // populating mean hay take the category id and use category model and give with product details
 
     if (!products) return next(new ErrorHandler("product not found", 404))

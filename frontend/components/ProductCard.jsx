@@ -3,8 +3,12 @@ import React from 'react'
 import { color } from '../styles/style'
 import { Image } from 'react-native'
 import { Button } from 'react-native-paper'
+import { useSelector } from 'react-redux'
+import { englishText, hindiText } from '../utils/language'
 
 const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navigate }) => {
+    const { language } = useSelector((state) => state.appLanguage);
+    const translations = language === 'English' ? englishText : hindiText;
     return (
         <TouchableOpacity activeOpacity={1} onPress={() => navigate.navigate('productdetails', { id })} >
             {/*  */}
@@ -48,7 +52,7 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                         borderBottomRightRadius: 20,
                         borderBottomLeftRadius: 20
                     }} onPress={() => addToCartHandler(id, name, price, image, stock)}>
-                        <Text style={{ color: i % 2 == 0 ? color.color1 : color.color2 }}>Add To Cart</Text></Button>
+                        <Text style={{ color: i % 2 == 0 ? color.color1 : color.color2 }}>{translations.addToCart}</Text></Button>
                 </TouchableOpacity>
 
             </View>

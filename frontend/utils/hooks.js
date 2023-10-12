@@ -9,6 +9,7 @@ import { getAllAdminProduct } from "../redux/actions/productAction"
 
 export const useMessageAndError = (navigate, dispatch, navigateTo = 'login') => {
     const { loading, message, error } = useSelector((state) => state.user)
+    console.log(loading, message, error);
     useEffect(() => {
         if (error) {
             Toast.show({
@@ -73,6 +74,7 @@ export const useSetCategory = (setCategory, isFocused) => {
         axios.get(`${server}/api/v1/product/categoryes`).then((res) => {
             setCategory(res.data.categoryes)
         }).catch(error => {
+            console.log(error);
             Toast.show({
                 type: 'error',
                 text1: error.response.data.message
@@ -92,6 +94,7 @@ export const useGetOrders = (isFocused, isAdmin = false) => {
             setOrders(res.data.order)
             setLoading(false)
         }).catch(error => {
+            console.log(error);
             setLoading(false)
             Toast.show({
                 type: 'error',
@@ -113,6 +116,7 @@ export const useAdminProduct = (dispatch, isFocused) => {
     useEffect(() => {
 
         if (error) {
+            console.log(error);
             Toast.show({
                 type: 'error',
                 text1: error

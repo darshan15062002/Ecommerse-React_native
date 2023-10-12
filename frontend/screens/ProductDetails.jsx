@@ -20,7 +20,7 @@ const ProductDetails = ({ route }) => {
     const dispatch = useDispatch()
     const isFocuse = useIsFocused()
     const { product: { _id, name, price, description, stock, images, quntity } } = useSelector(state => state.product)
-    console.log(_id);
+
 
     const [quantity, setQuantity] = useState(1)
 

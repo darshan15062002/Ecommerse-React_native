@@ -12,8 +12,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllAdminProduct, getAllProduct } from '../redux/actions/productAction'
 import { useSetCategory } from '../utils/hooks'
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
+import { englishText, hindiText } from '../utils/language'
 // import { defaultstyling } from '../styles/style'
-
 
 
 
@@ -24,6 +24,8 @@ const Home = () => {
     const dispatch = useDispatch()
     const { cartItem } = useSelector(state => state.cart)
     const { products } = useSelector((state) => state.product)
+    const { language } = useSelector((state) => state.appLanguage);
+    const translations = language === 'English' ? englishText : hindiText;
     const [catogory, setCatogory] = useState('')
     const [catogories, setCatogories] = useState([])
     const isFocused = useIsFocused()
@@ -89,7 +91,8 @@ const Home = () => {
 
                 <View style={{ paddingTop: 70, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                     {/* Heading */}
-                    <Heading text1={'Our'} text2={'Product'} />
+                    <Heading text1={translations.Our} text2={translations.Product} />
+
                     {/* SearchBar */}
                     <View>
                         <TouchableOpacity onPress={() => setActiveSearch((prev) => !prev)}>

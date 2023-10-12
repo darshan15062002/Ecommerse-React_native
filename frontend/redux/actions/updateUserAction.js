@@ -267,3 +267,5 @@ export const updateProductDetails = (id, name, description, price, stock, catego
         })
     }
 }
+
+
