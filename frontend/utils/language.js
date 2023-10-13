@@ -7,6 +7,16 @@ export const englishText = {
     Orders: "Orders",
     Password: "Password",
     SignOut: "Sign-Out",
+    Items: "Items",  // New translation for "items"
+    Checkout: "Checkout",
+    Cart: "Cart",
+    Conform: "Conform",
+    Order: "Order",
+    Subtotal: "Subtotal",
+    Tax: "Tax",
+    ShippingCharge: "Shipping Charge",
+    TotalAmount: "Total Amount",
+    Payment: "Payment",
 };
 
 export const hindiText = {
@@ -18,4 +28,14 @@ export const hindiText = {
     Orders: "आदेश",
     Password: "पासवर्ड",
     SignOut: "साइन आउट",
+    Items: "वस्तुएँ",
+    Checkout: "चेकआउट",
+    Cart: "कार्ट",
+    Conform: "पुष्टि करें",
+    Order: "ऑर्डर",
+    Subtotal: "कुल",
+    Tax: "टैक्स",
+    ShippingCharge: "शिपिंग शुल्क",
+    TotalAmount: "कुल रकम",
+    Payment: "भुगतान",
 };

@@ -8,10 +8,13 @@ import Cartitem from '../components/Cartitem'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
+import { englishText, hindiText } from '../utils/language'
 
 
 
 const Cart = () => {
+    const { language } = useSelector((state) => state.appLanguage); // Assuming you have 'appLanguage' in your Redux store
+    const translations = language === 'English' ? englishText : hindiText;
     const dispatch = useDispatch()
     const { cartItem } = useSelector(state => state.cart)
     const [totle] = useState(cartItem.reduce((prv, cur) => prv + cur.quntity * cur.price, 0))
@@ -66,8 +69,8 @@ const Cart = () => {
 
             <Header back={true} emptyCart={true} />
             <Heading
-                text1={'Shopping'}
-                text2={'Cart'}
+                text1={translations.Product}
+                text2={translations.Cart}
                 containerStyle={{ paddingTop: 75, marginLeft: 35 }} />
 
 
@@ -121,7 +124,7 @@ const Cart = () => {
                     padding: 5
 
                 }}>
-                    CheckOut
+                    {translations.Checkout}
                 </Button>
             </TouchableOpacity>
         </View >

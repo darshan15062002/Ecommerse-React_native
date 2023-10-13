@@ -10,12 +10,15 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import { getProductDetails } from '../redux/actions/productAction';
+import { englishText, hindiText } from '../utils/language';
 
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH
 
 
 const ProductDetails = ({ route }) => {
+    const { language } = useSelector((state) => state.appLanguage);
+    const translations = language === 'English' ? englishText : hindiText;
 
     const dispatch = useDispatch()
     const isFocuse = useIsFocused()
@@ -123,7 +126,7 @@ const ProductDetails = ({ route }) => {
 
                 </View>
                 <TouchableOpacity activeOpacity={0.9} onPress={addToCartHandler}>
-                    <Button icon={'cart'} style={style.btn} textColor={color.color2}>ADD TO CART</Button>
+                    <Button icon={'cart'} style={style.btn} textColor={color.color2}>{translations.addToCart}</Button>
                 </TouchableOpacity>
             </View>
 

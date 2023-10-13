@@ -8,11 +8,13 @@ import Conformorderitem from '../components/Conformorderitem'
 import { useNavigation } from '@react-navigation/native'
 import { Button } from 'react-native-paper'
 import { useSelector } from 'react-redux'
+import { englishText, hindiText } from '../utils/language'
 
 
 
 const Conformorder = () => {
-
+    const { language } = useSelector((state) => state.appLanguage);
+    const translations = language === 'English' ? englishText : hindiText;
 
     const navigate = useNavigation()
     const { cartItem } = useSelector(state => state.cart)
@@ -27,12 +29,11 @@ const Conformorder = () => {
         <View style={{
             ...defaultstyling
         }}>
-
             {/* header */}
             <Header back={true} emptyCart={false} />
 
             {/* heading */}
-            <Heading text1={'Conform'} text2={'Order'} containerStyle={{ paddingTop: 75 }} />
+            <Heading text1={translations.Conform} text2={translations.Order} containerStyle={{ paddingTop: 75 }} />
 
             <View style={{
                 paddingVertical: 20,
@@ -44,22 +45,19 @@ const Conformorder = () => {
                             <Conformorderitem key={item.product}
                                 price={item.price}
                                 name={item.name}
-
                                 image={item.image}
                                 index={index}
                                 qty={item.quentity}
-
                             />
                         ))
                     }
-
                 </ScrollView>
-
             </View>
-            <PriceTag heading={'Subtotle'} value={itemsprice} />
-            <PriceTag heading={'Tax'} value={tax} />
-            <PriceTag heading={'Shipping Charge'} value={shippingCharges} />
-            <PriceTag heading={'Totle Amount'} value={totleAmount} />
+
+            <PriceTag heading={translations.Subtotal} value={itemsprice} />
+            <PriceTag heading={translations.Tax} value={tax} />
+            <PriceTag heading={translations.ShippingCharge} value={shippingCharges} />
+            <PriceTag heading={translations.TotalAmount} value={totleAmount} />
 
             <TouchableOpacity activeOpacity={0.8} onPress={() => navigate.navigate('payment', {
                 itemsprice, shippingCharges, tax, totleAmount
@@ -69,10 +67,11 @@ const Conformorder = () => {
                     padding: 5,
                     margin: 10,
                     borderRadius: 100,
-
-                }}>Payment</Button>
+                }}>
+                    {translations.Payment}
+                </Button>
             </TouchableOpacity>
-        </View >
+        </View>
     )
 }
 
