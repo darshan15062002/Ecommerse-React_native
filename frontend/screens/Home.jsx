@@ -112,8 +112,17 @@ const Home = () => {
                 {/* Product */}
 
                 <View style={{ flex: 1 }}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        {products?.map((item, index) => (<ProductCard stock={item.stock} name={item.name} price={item.price} image={item.images[0].imgUrl} addToCartHandler={addToCartHandler} id={item._id} key={item._id} i={index} navigate={navigate} />))}
+                    <ScrollView vertical showsVerticalScrollIndicator={false}>
+                        <View style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>
+                            {products?.map((item, index) => (<ProductCard
+                                stock={item.stock} name={item.name}
+                                price={item.price}
+                                image={item.images[0].imgUrl}
+                                addToCartHandler={addToCartHandler}
+                                id={item._id} key={item._id}
+                                i={index}
+                                navigate={navigate} />))}
+                        </View>
                     </ScrollView>
 
                 </View>

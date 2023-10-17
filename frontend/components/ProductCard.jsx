@@ -17,9 +17,10 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'relative',
-                margin: 20,
-                borderRadius: 20,
-                height: 350,
+                margin: 5,
+                borderRadius: 10,
+                height: 200,
+                width: 150,
                 backgroundColor: i % 2 == 0 ? color.color1 : color.color2
             }}>
                 <Image source={{ uri: image }} style={{
@@ -27,8 +28,7 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                     width: '100%',
                     resizeMode: 'contain',
                     position: 'absolute',
-                    left: 20,
-                    top: 40
+
                 }} />
                 <View style={{
                     flexDirection: 'column',
@@ -36,10 +36,10 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                     justifyContent: 'space-between',
                     width: '100%'
                 }} >
-                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 25, fontWeight: '300' }} >
+                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 15, fontWeight: '300' }} >
                         {name}
                     </Text>
-                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 20, fontWeight: '700' }} >
+                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 10, fontWeight: '700' }} >
                         ${price}
                     </Text>
 
@@ -49,8 +49,8 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                     <Button style={{
                         backgroundColor: i % 2 == 0 ? color.color2 : color.color1,
                         borderRadius: 0,
-                        borderBottomRightRadius: 20,
-                        borderBottomLeftRadius: 20
+                        borderBottomRightRadius: 10,
+                        borderBottomLeftRadius: 10
                     }} onPress={() => addToCartHandler(id, name, price, image, stock)}>
                         <Text style={{ color: i % 2 == 0 ? color.color1 : color.color2 }}>{translations.addToCart}</Text></Button>
                 </TouchableOpacity>

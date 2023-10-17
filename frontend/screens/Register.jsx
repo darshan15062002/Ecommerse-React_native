@@ -94,7 +94,7 @@ const Register = ({ route }) => {
                         <TextInput {...inputOption} placeholder='Address' value={address} onChangeText={setAddress} />
                         <TextInput {...inputOption} placeholder='City' value={city} onChangeText={setCity} />
                         <TextInput {...inputOption} placeholder='State' value={state} onChangeText={setState} />
-                        <TextInput {...inputOption} placeholder='Cuntry' value={cuntry} onChangeText={setCuntry} />
+                        <TextInput {...inputOption} placeholder='Country' value={cuntry} onChangeText={setCuntry} />
                         <TextInput {...inputOption} placeholder='Pincode' value={pincode} onChangeText={setPincode} keyboardType='email-address' />
 
 

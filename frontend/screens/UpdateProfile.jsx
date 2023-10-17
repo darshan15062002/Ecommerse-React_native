@@ -63,18 +63,11 @@ const UpdateProfile = () => {
                 <View style={{ marginBottom: 20 }}>
 
 
-
-
-
-
-
-
-
                     <TextInput {...inputOption} placeholder='Name' value={name} onChangeText={setName} />
                     <TextInput {...inputOption} placeholder='Email' value={email} onChangeText={setEmail} keyboardType='email-address' />
                     <TextInput {...inputOption} placeholder='Address' value={address} onChangeText={setAddress} />
                     <TextInput {...inputOption} placeholder='City' value={city} onChangeText={setCity} />
-                    <TextInput {...inputOption} placeholder='Cuntry' value={country} onChangeText={setCountry} />
+                    <TextInput {...inputOption} placeholder='Country' value={country} onChangeText={setCountry} />
                     <TextInput {...inputOption} maxLength={6} placeholder='PinCode' value={`${pinCode}`} onChangeText={setPinCode} keyboardType='number-pad' />
 
 
