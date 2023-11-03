@@ -69,7 +69,7 @@ const SearchItem = ({ key, name, imgUrl, price, handler }) => (
                 <Text numberOfLines={1}>
                     {name}
                 </Text>
-                <Headline style={{ fontWeight: 900 }}>${price}</Headline>
+                <Headline style={{ fontWeight: 900 }}>₹{price}</Headline>
             </View>
 
 

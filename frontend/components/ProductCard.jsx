@@ -40,7 +40,7 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                         {name}
                     </Text>
                     <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 10, fontWeight: '700' }} >
-                        ${price}
+                    ₹{price}
                     </Text>
 
 

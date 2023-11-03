@@ -16,7 +16,7 @@ const Conformorderitem = ({ qty, price, name, index, image }) => {
 
                 <Text style={{ marginHorizontal: 10 }}>X</Text>
 
-                <Text>${price}</Text></View>
+                <Text>₹{price}</Text></View>
 
 
         </View>

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { color, defaultstyling, inputStyleing } from '../styles/style'
-import Heading from '../components/Heading'
+
 import { Button, TextInput } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import Footer from '../components/Footer'

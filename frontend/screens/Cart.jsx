@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView, useAnimatedValue } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { color, defaultstyling } from '../styles/style'
 import Header from '../components/Header'
 import Heading from '../components/Heading'
@@ -17,7 +17,11 @@ const Cart = () => {
     const translations = language === 'English' ? englishText : hindiText;
     const dispatch = useDispatch()
     const { cartItem } = useSelector(state => state.cart)
-    const [totle] = useState(cartItem.reduce((prv, cur) => prv + cur.quntity * cur.price, 0))
+    const [totle, setTotle] = useState(0)
+    useEffect(() => {
+        setTotle(cartItem.reduce((prv, cur) => prv + cur.quntity * cur.price, 0))
+    })
+
 
     const navigate = useNavigation()
 
@@ -111,7 +115,7 @@ const Cart = () => {
                 justifyContent: 'space-between'
             }}>
                 <Text>{cartItem.length} Items</Text>
-                <Text>$ {totle}</Text>
+                <Text>₹ {totle}</Text>
 
 
             </View>

@@ -84,7 +84,7 @@ const ProductDetails = ({ route }) => {
                 }}>{name}</Text>
                 <Text numberOfLines={2} style={{
                     fontSize: 18, fontWeight: '900'
-                }}>${price}</Text>
+                }}>₹{price}</Text>
                 <Text numberOfLines={8} style={{
                     lineHeight: 20,
                     letterSpacing: 1,

@@ -32,7 +32,7 @@ const ProductListItem = ({ i,
 
                     </Image>
                     <Text style={{ width: 60, color: color.color2 }}
-                        numberOfLines={1}>${price}</Text>
+                        numberOfLines={1}>₹{price}</Text>
                     <Text style={{ width: 60, color: color.color2 }}
                         numberOfLines={1}>{name}</Text>
                     <Text style={{ width: 60, color: color.color2 }}
