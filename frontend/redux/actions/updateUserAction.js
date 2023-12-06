@@ -269,3 +269,34 @@ export const updateProductDetails = (id, name, description, price, stock, catego
 }
 
 
+export const resetPassword = (otp, password) => async (dispatch) => {
+    try {
+        dispatch({
+            type: "resetPasswordRequest",
+        });
+        const { data } = await axios.put(
+            `${server}/api/v1/user/forgetpassword`,
+            {
+                otp,
+                password,
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            }
+        );
+
+        dispatch({
+            type: "resetPasswordSuccess",
+            payload: data.message,
+        });
+    } catch (error) {
+        dispatch({
+            type: "resetPasswordFail",
+            payload: error.response.data.message,
+        });
+    }
+};
+

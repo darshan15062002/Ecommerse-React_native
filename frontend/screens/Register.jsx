@@ -7,19 +7,17 @@ import { useNavigation } from '@react-navigation/native'
 import Footer from '../components/Footer'
 import { ScrollView } from 'react-native'
 import { Avatar } from 'react-native-paper'
+import { useMessageAndError } from '../utils/hooks'
+import { useDispatch } from 'react-redux'
+import mime from "mime";
+import { register } from '../redux/actions/userActions'
 
-const Register = ({ route }) => {
+const Register = ({ navigation, route }) => {
 
-    useEffect(() => {
-        if (route.params?.image) return setAvatar(route.params.image)
-
-
-    }, [route.params])
 
 
     const navigate = useNavigation()
 
-    const loading = false
     const [avatar, setAvatar] = useState("")
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -30,26 +28,7 @@ const Register = ({ route }) => {
     const [cuntry, setCuntry] = useState("")
     const [pincode, setPincode] = useState("")
 
-    const myForm = new FormData();
-    myForm.append("name", name)
-    myForm.append("email", email)
-    myForm.append("password", password)
-    myForm.append("address", address)
-    myForm.append("city", city)
-    myForm.append("state", state)
-    myForm.append("cuntry", cuntry)
-    myForm.append("pincode", pincode)
-
-
-
-
-    const defaultImg = 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1681309322~exp=1681309922~hmac=55c1e571f3834e0092b67fd2b20da268edc9283e1e9fadcea58549c70b24dcc5'
-
-
-    const submitHandler = () => {
-        alert('yeah')
-        navigate.navigate('verify')
-    }
+    const dispatch = useDispatch();
 
     const disabledBtn = !name || !email || !password || !address || !city || !state || !cuntry || !pincode
     const inputOption = {
@@ -57,6 +36,41 @@ const Register = ({ route }) => {
         style: inputStyleing,
         activeOutlineColor: color.color1
     }
+
+    const defaultImg = 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=740&t=st=1681309322~exp=1681309922~hmac=55c1e571f3834e0092b67fd2b20da268edc9283e1e9fadcea58549c70b24dcc5'
+
+
+    const submitHandler = () => {
+        const myForm = new FormData();
+        myForm.append("name", name)
+        myForm.append("email", email)
+        myForm.append("password", password)
+        myForm.append("address", address)
+        myForm.append("city", city)
+        myForm.append("state", state)
+        myForm.append("country", cuntry)
+        myForm.append("pinCode", pincode)
+
+        if (avatar !== "") {
+            myForm.append("file", {
+                uri: avatar,
+                type: mime.getType(avatar),
+                name: avatar.split("/").pop(),
+            });
+        }
+
+        dispatch(register(myForm));
+    };
+
+
+    const loading = useMessageAndError(navigation, dispatch, "profile");
+
+
+
+    useEffect(() => {
+        if (route.params?.image) setAvatar(route.params.image);
+    }, [route.params]);
+
     return (
         <>
             <View style={{ ...defaultstyling, backgroundColor: color.color2 }}>

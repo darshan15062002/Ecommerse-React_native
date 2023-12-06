@@ -10,7 +10,7 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import { getProductDetails } from '../redux/actions/productAction';
-import { englishText, hindiText } from '../utils/language';
+import { englishText, gujaratiText, hindiText } from '../utils/language';
 
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH
@@ -18,8 +18,7 @@ const ITEM_WIDTH = SLIDER_WIDTH
 
 const ProductDetails = ({ route }) => {
     const { language } = useSelector((state) => state.appLanguage);
-    const translations = language === 'English' ? englishText : hindiText;
-
+    const translations = language === 'English' ? englishText : (language === 'Hindi' ? hindiText : gujaratiText);
     const dispatch = useDispatch()
     const isFocuse = useIsFocused()
     const { product: { _id, name, price, description, stock, images, quntity } } = useSelector(state => state.product)

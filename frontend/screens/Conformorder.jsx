@@ -8,14 +8,13 @@ import Conformorderitem from '../components/Conformorderitem'
 import { useNavigation } from '@react-navigation/native'
 import { Button } from 'react-native-paper'
 import { useSelector } from 'react-redux'
-import { englishText, hindiText } from '../utils/language'
+import { englishText, gujaratiText, hindiText } from '../utils/language'
 
 
 
 const Conformorder = () => {
     const { language } = useSelector((state) => state.appLanguage);
-    const translations = language === 'English' ? englishText : hindiText;
-
+    const translations = language === 'English' ? englishText : (language === 'Hindi' ? hindiText : gujaratiText);
     const navigate = useNavigation()
     const { cartItem } = useSelector(state => state.cart)
 

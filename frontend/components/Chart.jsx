@@ -12,13 +12,13 @@ const Chart = ({
     const data = [{
         name: "Out Of Stock",
         population: outOfStock,
-        color: color.color1_light2,
+        color: color.color2,
         legendFontColor: color.color1_light
     },
     {
         name: "In Stock",
         population: inStock,
-        color: color.color1_light,
+        color: color.color1,
         legendFontColor: color.color1_light2
     }
 

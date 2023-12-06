@@ -98,6 +98,7 @@ export const register = (formData) => async (dispatch) => {
             payload: "Welcome Back"
         })
     } catch (error) {
+        console.log(error);
         dispatch({
             type: "registerFailed",
             payload: error.response.data.message

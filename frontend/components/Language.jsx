@@ -15,13 +15,16 @@ const Language = () => {
 
     const languages = [
         {
-            code: 'en',
+
             name: 'English',
         },
         {
-            code: 'hi',
+
             name: 'Hindi',
         },
+        {
+            name: "Gujarati"
+        }
     ];
 
     const handleLanguageChange = (lan) => {
@@ -37,9 +40,9 @@ const Language = () => {
             <Text style={style.name}>{language}</Text>
             {show && (
                 <View style={style.languageSelector}>
-                    {languages.map((language) => (
+                    {languages.map((language, index) => (
                         <TouchableOpacity
-                            key={language.code}
+                            key={index}
                             style={style.languageOption}
                             onPress={() => handleLanguageChange(language)}
                         >

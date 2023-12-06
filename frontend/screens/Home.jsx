@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllAdminProduct, getAllProduct } from '../redux/actions/productAction'
 import { useSetCategory } from '../utils/hooks'
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
-import { englishText, hindiText } from '../utils/language'
+import { englishText, gujaratiText, hindiText } from '../utils/language'
 // import { defaultstyling } from '../styles/style'
 
 
@@ -25,8 +25,7 @@ const Home = () => {
     const { cartItem } = useSelector(state => state.cart)
     const { products } = useSelector((state) => state.product)
     const { language } = useSelector((state) => state.appLanguage);
-    const translations = language === 'English' ? englishText : hindiText;
-    const [catogory, setCatogory] = useState('')
+    const translations = language === 'English' ? englishText : (language === 'Hindi' ? hindiText : gujaratiText); const [catogory, setCatogory] = useState('')
     const [catogories, setCatogories] = useState([])
     const isFocused = useIsFocused()
     const [activesearch, setActiveSearch] = useState(false)
@@ -113,7 +112,7 @@ const Home = () => {
 
                 <View style={{ flex: 1 }}>
                     <ScrollView vertical showsVerticalScrollIndicator={false}>
-                        <View style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row' }}>
+                        <View style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between' }}>
                             {products?.map((item, index) => (<ProductCard
                                 stock={item.stock} name={item.name}
                                 price={item.price}

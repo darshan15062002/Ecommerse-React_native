@@ -4,16 +4,16 @@ import { color } from '../styles/style'
 import { Image } from 'react-native'
 import { Button } from 'react-native-paper'
 import { useSelector } from 'react-redux'
-import { englishText, hindiText } from '../utils/language'
+import { englishText, gujaratiText, hindiText } from '../utils/language'
 
 const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navigate }) => {
     const { language } = useSelector((state) => state.appLanguage);
-    const translations = language === 'English' ? englishText : hindiText;
+    const translations = language === 'English' ? englishText : (language === 'Hindi' ? hindiText : gujaratiText);
     return (
         <TouchableOpacity activeOpacity={1} onPress={() => navigate.navigate('productdetails', { id })} >
             {/*  */}
             <View style={{
-                width: 220, elevation: 5,
+                elevation: 5,
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'relative',
@@ -40,7 +40,7 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                         {name}
                     </Text>
                     <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 10, fontWeight: '700' }} >
-                    ₹{price}
+                        ₹{price}
                     </Text>
 
 

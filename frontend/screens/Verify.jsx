@@ -18,9 +18,8 @@ const Verify = () => {
 
 
     const submitHandler = () => {
-        alert('yeah')
-        navigate.navigate('login')
-    }
+        dispatch(resetPassword(otp, password));
+    };
 
     const inputOption = {
         mode: 'outlined',

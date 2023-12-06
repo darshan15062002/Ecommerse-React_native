@@ -8,13 +8,13 @@ import Cartitem from '../components/Cartitem'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
-import { englishText, hindiText } from '../utils/language'
+import { englishText, gujaratiText, hindiText } from '../utils/language'
 
 
 
 const Cart = () => {
     const { language } = useSelector((state) => state.appLanguage); // Assuming you have 'appLanguage' in your Redux store
-    const translations = language === 'English' ? englishText : hindiText;
+    const translations = language === 'English' ? englishText : (language === 'Hindi' ? hindiText : gujaratiText);
     const dispatch = useDispatch()
     const { cartItem } = useSelector(state => state.cart)
     const [totle, setTotle] = useState(0)

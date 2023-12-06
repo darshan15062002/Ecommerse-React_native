@@ -12,7 +12,7 @@ import { useMessageAndError, useMessageAndErrorOther } from '../utils/hooks'
 import mime from 'mime'
 import { updateProfilePic } from '../redux/actions/updateUserAction'
 import Language from '../components/Language'
-import { englishText, hindiText } from '../utils/language'
+import { englishText, gujaratiText, hindiText } from '../utils/language'
 
 
 
@@ -23,8 +23,7 @@ const Profile = ({ route }) => {
 
     const { user } = useSelector((state) => state.user)
     const { language } = useSelector((state) => state.appLanguage);
-    const translations = language === 'English' ? englishText : hindiText;
-    const [avatar, setAvatar] = useState(user?.avatar.url)
+    const translations = language === 'English' ? englishText : (language === 'Hindi' ? hindiText : gujaratiText); const [avatar, setAvatar] = useState(user?.avatar.url)
 
 
 
