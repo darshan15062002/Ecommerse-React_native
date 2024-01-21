@@ -18,6 +18,7 @@ import {
 
     getAllProducts,
     getProductDetails,
+    getScript,
     updateProduct,
 } from "../controller/product.js";
 import { isAuthenticated, isAdmin } from "../middleWares/auth.js";
@@ -35,6 +36,7 @@ router.post("/new", isAuthenticated, isAdmin, singleUpload, createProduct)
 router.route("/images/:id").post(isAuthenticated, isAdmin, singleUpload, addProductImage).delete(isAuthenticated, isAdmin, deleteProductImage)
 
 router.post("/category", isAuthenticated, isAdmin, addCategory)
+router.post("/script", isAuthenticated, isAdmin, getScript)
 
 router.get("/categoryes", getAllCategory)
 router.delete("/category/:id", isAuthenticated, isAdmin, deleteCategory)

@@ -3,6 +3,8 @@ import { Product } from "../models/product.js";
 import ErrorHandler from "../utils/error.js";
 import cloudinary from 'cloudinary'
 import { getDataUri } from "../utils/features.js";
+import { GoogleAuth } from "google-auth-library"
+import { TextServiceClient } from "@google-ai/generativelanguage";
 
 import { Category } from "../models/category.js";
 
@@ -129,6 +131,9 @@ export const addProductImage = asyncError(async (req, res, next) => {
 })
 
 
+
+
+
 export const deleteProductImage = asyncError(async (req, res, next) => {
     const product = await Product.findById(req.params.id)
 
@@ -208,4 +213,35 @@ export const getAllAdminProducts = asyncError(async (req, res, next) => {
         outOfStock: outOfStock.length,
         instock: products.length - outOfStock.length
     })
+})
+
+
+export const getScript = asyncError(async (req, res, next) => {
+    const productDescription = req.body.description;
+
+    const MODEL_NAME = "models/text-bison-001";
+    const API_KEY = process.env.API_KEY;
+    const client = new TextServiceClient({
+        authClient: new GoogleAuth().fromAPIKey(API_KEY),
+    });
+
+    const prompt = `Generate a script for a promotional video featuring a new product. The product is a  with the following key features: ${productDescription}. Emphasize its benefits and make the script engaging and informative. generate in way so that it direcly overlaps with video`
+
+    client
+        .generateText({
+            model: MODEL_NAME,
+            prompt: {
+                text: prompt,
+            },
+        })
+        .then((result) => {
+            const generatedText = result[0]?.candidates[0]?.output || "No output available";
+            console.log(generatedText, "generated");
+
+            res.status(200).json({
+                sucsses: true,
+                message: generatedText
+            })
+        })
+
 })
