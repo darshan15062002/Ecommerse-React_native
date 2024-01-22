@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@google-ai/generativelanguage": "^2.0.0",
-    "google-auth-library": "^9.4.2"
-  }
-}
