@@ -11,7 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import { getProductDetails } from '../redux/actions/productAction';
 import { englishText, gujaratiText, hindiText } from '../utils/language';
-
+import { server } from '../redux/store';
+import axios from 'axios';
+import Gif from 'react-native-gif';
+import * as Speech from 'expo-speech'
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH
 
@@ -22,13 +25,23 @@ const ProductDetails = ({ route }) => {
     const dispatch = useDispatch()
     const isFocuse = useIsFocused()
     const { product: { _id, name, price, description, stock, images, quntity } } = useSelector(state => state.product)
-
+    const [playing, setPlaying] = useState(false)
 
     const [quantity, setQuantity] = useState(1)
-
+    const [script, setScript] = useState("")
     const isCarousel = useRef(null)
 
+    const speak = () => {
+        Speech.speak(script, { rate: 0.75 }); // You can customize the rate if needed
+    };
+    useEffect(() => {
+        script && playing && speak();
 
+
+        return () => {
+            Speech.stop();
+        };
+    }, [script, playing]);
     const incrementQty = () => {
         if (quantity >= stock) return
         setQuantity((prev) => prev + 1)
@@ -59,6 +72,18 @@ const ProductDetails = ({ route }) => {
 
     }
 
+    const generateScript = async () => {
+        setPlaying((prev) => !prev)
+        try {
+            const response = await axios.post(`${server}/api/v1/product/script`, { description: description });
+            console.log(response.data.message);
+            setScript(response.data.message)
+        } catch (error) {
+            // Handle the error
+            setPlaying(false)
+            console.error('Error:', error.message);
+        }
+    }
 
     useEffect(() => {
         dispatch(getProductDetails(route.params.id))
@@ -67,6 +92,7 @@ const ProductDetails = ({ route }) => {
 
     return (
         <View style={{ ...defaultstyling, padding: 0, backgroundColor: color.color1 }}>
+
             <Header back={true} />
             {/* carousel */}
             <Carousel
@@ -75,7 +101,28 @@ const ProductDetails = ({ route }) => {
                 itemWidth={ITEM_WIDTH}
                 ref={isCarousel}
                 data={images}
-                renderItem={CarouselCardItem} />
+                renderItem={CarouselCardItem}
+            />
+            <View style={{
+
+                position: 'absolute',
+                right: 30,
+                top: 250,
+
+                zIndex: 100
+            }}>
+                <TouchableOpacity activeOpacity={0.9} onPress={generateScript}>
+                    {playing ? (
+                        <Gif
+                            style={{ width: 50, height: 50 }}
+                            source={require("../assets/Pulse-1s-200px.gif")}
+                        />
+                    ) :
+                        <Button icon={"robot"} style={style.btn} textColor={color.color2}></Button>}
+
+                </TouchableOpacity>
+            </View>
+
 
             <View style={{ backgroundColor: color.color2, padding: 35, flex: 1, marginTop: -380, borderTopLeftRadius: 60, borderTopRightRadius: 60 }}>
                 <Text numberOfLines={2} style={{
@@ -129,12 +176,13 @@ const ProductDetails = ({ route }) => {
                 </TouchableOpacity>
             </View>
 
-        </View>
+        </View >
     )
 }
 const CarouselCardItem = ({ item, index }) => (
     <View style={style.container} key={index}>
-        <Image source={{ uri: item.imgUrl }} style={style.images} />
+        <Image source={{ uri: item.imgUrl }} style={{ ...style.images, position: 'relative' }} />
+
     </View>
 )
 
