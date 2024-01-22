@@ -32,7 +32,8 @@ const ProductDetails = ({ route }) => {
     const isCarousel = useRef(null)
 
     const speak = () => {
-        Speech.speak(script, { rate: 0.75 }); // You can customize the rate if needed
+        Speech.speak(script, { rate: 0.75 });
+
     };
     useEffect(() => {
         script && playing && speak();
