@@ -224,7 +224,7 @@ export const getScript = asyncError(async (req, res, next) => {
     const client = new TextServiceClient({
         authClient: new GoogleAuth().fromAPIKey(API_KEY),
     });
-    const languageCode = 'hi';
+
     const prompt = `Generate a script for a promotional video featuring a new product. The product is a  with the following key features: ${productDescription}. Emphasize its benefits and make the script engaging and informative. generate in way so that it directly use in with speak function`
 
     client
@@ -233,7 +233,6 @@ export const getScript = asyncError(async (req, res, next) => {
             prompt: {
                 text: prompt,
             },
-            languageCode: languageCode
         })
         .then((result) => {
             const generatedText = result[0]?.candidates[0]?.output || "No output available";

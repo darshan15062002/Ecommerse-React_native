@@ -33,7 +33,6 @@ const ProductDetails = ({ route }) => {
 
     const speak = () => {
         Speech.speak(script, { rate: 0.75 });
-
     };
     useEffect(() => {
         script && playing && speak();
@@ -77,9 +76,9 @@ const ProductDetails = ({ route }) => {
         setPlaying((prev) => !prev)
         try {
             const response = await axios.post(`${server}/api/v1/product/script`, { description: description });
-
+            console.log(response.data.message);
             setScript(response.data.message)
-            setPlaying(false)
+
         } catch (error) {
             // Handle the error
             setPlaying(false)
