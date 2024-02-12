@@ -38,7 +38,12 @@ const ProductDetails = ({ route }) => {
         script && playing && speak();
 
 
+        // const finishSpeakingListener = Speech.addListener('didFinishSpeaking', () => {
+        //     setPlaying(false);
+        // });
+
         return () => {
+            // finishSpeakingListener.remove();
             Speech.stop();
         };
     }, [script, playing]);
