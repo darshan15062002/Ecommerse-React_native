@@ -36,10 +36,10 @@ const ProductCard = ({ stock, name, price, image, id, addToCartHandler, i, navig
                     justifyContent: 'space-between',
                     width: '100%'
                 }} >
-                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 15, fontWeight: '300' }} >
+                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 15, fontWeight: "300" }} >
                         {name}
                     </Text>
-                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 10, fontWeight: '700' }} >
+                    <Text numberOfLines={1} style={{ color: i % 2 == 0 ? color.color2 : color.color3, fontSize: 10, fontWeight: "700" }} >
                         ₹{price}
                     </Text>
 

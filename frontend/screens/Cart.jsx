@@ -101,7 +101,7 @@ const Cart = () => {
                                 decrementHandler={decrementHandler} />
                         )) : (<Text style={{
                             textAlign: 'center',
-                            fontWeight: '900',
+                            fontWeight: "900",
                             fontSize: 18
                         }}>No item yet</Text>)
                     }</ScrollView>

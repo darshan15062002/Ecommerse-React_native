@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     text: {
-        fontWeight: 900,
+        fontWeight: "900",
         textAlign: 'center',
         textTransform: 'uppercase'
     }

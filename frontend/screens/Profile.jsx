@@ -109,7 +109,7 @@ const Profile = ({ route }) => {
                             <Button textColor={color.color1}>{translations.ChangePhoto}</Button>
                         </TouchableOpacity>
                         <Text style={styles.name}>{user?.name}</Text>
-                        <Text style={{ fontWeight: '300', color: color.color2 }}>{user?.email}</Text>
+                        <Text style={{ fontWeight: "300", color: color.color2 }}>{user?.email}</Text>
                     </View>
                     <View>
                         <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 20,
-        fontWeight: '500',
+        fontWeight: "500",
         marginTop: 10,
         color: color.color2
 

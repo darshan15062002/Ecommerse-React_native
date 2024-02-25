@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     text: {
         width: 40,
         color: color.color2,
-        fontWeight: 900
+        fontWeight: "900"
     }
 
 })

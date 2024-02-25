@@ -1,8 +1,8 @@
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, Dimensions, TouchableOpacity, ImageComponent } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { color, defaultstyling } from '../styles/style';
 import Header from '../components/Header'
-import Carousel from 'react-native-snap-carousel';
+
 import { StyleSheet } from 'react-native';
 import { Image } from 'react-native';
 import { Avatar, Button } from 'react-native-paper';
@@ -15,6 +15,8 @@ import { server } from '../redux/store';
 import axios from 'axios';
 import Gif from 'react-native-gif';
 import * as Speech from 'expo-speech'
+// import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 const SLIDER_WIDTH = Dimensions.get('window').width
 const ITEM_WIDTH = SLIDER_WIDTH
 
@@ -109,6 +111,7 @@ const ProductDetails = ({ route }) => {
                 data={images}
                 renderItem={CarouselCardItem}
             />
+
             <View style={{
 
                 position: 'absolute',
@@ -135,7 +138,7 @@ const ProductDetails = ({ route }) => {
                     fontSize: 25
                 }}>{name}</Text>
                 <Text numberOfLines={2} style={{
-                    fontSize: 18, fontWeight: '900'
+                    fontSize: 18, fontWeight: "900"
                 }}>₹{price}</Text>
                 <Text numberOfLines={8} style={{
                     lineHeight: 20,
@@ -186,11 +189,12 @@ const ProductDetails = ({ route }) => {
     )
 }
 const CarouselCardItem = ({ item, index }) => (
-    <View style={style.container} key={index}>
-        <Image source={{ uri: item.imgUrl }} style={{ ...style.images, position: 'relative' }} />
 
+    <View style={style.container} key={index}>
+
+        <Image source={{ uri: item.imgUrl }} style={{ ...style.images, position: 'relative' }} />
     </View>
-)
+);
 
 
 const style = StyleSheet.create({

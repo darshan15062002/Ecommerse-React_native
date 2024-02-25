@@ -64,7 +64,7 @@ const Orders = () => {
 const style = StyleSheet.create({
     heading: {
         fontSize: 25,
-        fontWeight: '500',
+        fontWeight: "500",
         textAlign: 'center',
         backgroundColor: color.color3,
         color: color.color2,

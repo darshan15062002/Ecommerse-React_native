@@ -5,14 +5,13 @@ import { color, defaultstyling, inputStyleing } from '../styles/style'
 import { Button, TextInput } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import Footer from '../components/Footer'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { login } from '../redux/actions/userActions'
 
 import { useMessageAndError } from '../utils/hooks'
 
 
 const Login = () => {
-
 
     const navigate = useNavigation()
     const [email, setEmail] = useState("")
@@ -23,7 +22,7 @@ const Login = () => {
 
 
 
-    // console.log(message, isAuthenticated);
+
 
 
 
@@ -56,7 +55,7 @@ const Login = () => {
                         <Text style={style.forgotText}>Forgot Password</Text>
                     </TouchableOpacity>
                     <Button loading={loading} style={style.btn} disabled={email === "" || password === "" ? true : false} onPress={submitHandler} textColor={color.color2}>Login</Button>
-                    <Text style={style.or}>OR</Text>
+                    <Text style={{ alignSelf: 'center', color: color.color2 }} >OR</Text>
                     <TouchableOpacity activeOpacity={0.8} onPress={() => navigate.navigate("register")}>
                         <Text style={style.link}>Sign Up</Text>
                     </TouchableOpacity>
@@ -69,7 +68,7 @@ const Login = () => {
 const style = StyleSheet.create({
     heading: {
         fontSize: 25,
-        fontWeight: '500',
+        fontWeight: "500",
         textAlign: 'center',
         backgroundColor: color.color3,
         color: color.color2,
@@ -88,7 +87,7 @@ const style = StyleSheet.create({
         color: color.color2,
         marginHorizontal: 20,
         marginVertical: 10,
-        fontWeight: '100',
+        fontWeight: "100",
         alignSelf: 'flex-end'
 
     },
@@ -97,13 +96,7 @@ const style = StyleSheet.create({
         margin: 20,
         padding: 6,
     },
-    or: {
-        color: color.color2,
-        alignSelf: 'center',
-        fontSize: 20,
-        fontWeight: 100
 
-    },
     link: {
         color: color.color2,
         alignSelf: 'center',

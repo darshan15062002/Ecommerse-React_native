@@ -2,10 +2,7 @@ import { Platform, StatusBar, StyleSheet } from "react-native";
 
 export const color = StyleSheet.create({
     color1: '#647E68',
-
-
     // color1: '#5D3891',
-    // color1: '#EA1179',
     // color1: '#c70049',
     color1_light: ' rgba(93,56,145,2)',
     color1_light2: 'rgba(93,56,145,0.4)',
@@ -31,7 +28,7 @@ export const inputStyleing = StyleSheet.create({
 })
 export const formHeading = StyleSheet.create({
     fontSize: 25,
-    fontWeight: '500',
+    fontWeight: "500",
     textAlign: 'center',
     backgroundColor: color.color3,
     color: color.color2,

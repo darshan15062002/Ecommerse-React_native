@@ -174,7 +174,7 @@ const style = StyleSheet.create({
         marginVertical: 5
     },
     radioContainerText: {
-        fontWeight: '600',
+        fontWeight: "600",
         textTransform: 'uppercase',
         color: color.color2,
         fontSize: 18

@@ -83,7 +83,7 @@ const PriceTag = ({ heading, value }) => (
         marginVertical: 5
     }}>
         <Text style={{
-            fontWeight: '800'
+            fontWeight: "800"
         }}>{heading}</Text>
         <Text>₹{value}</Text>
 

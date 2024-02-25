@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     cardText: {
-        fontWeight: 600,
+        fontWeight: "600",
         textTransfrom: 'uppercase',
         letterSpacing: 1
 

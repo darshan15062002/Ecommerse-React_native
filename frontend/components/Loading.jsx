@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+
 import React from 'react'
 import { ActivityIndicator } from 'react-native-paper'
 import { color } from '../styles/style'

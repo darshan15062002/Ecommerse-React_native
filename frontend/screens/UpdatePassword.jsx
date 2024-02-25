@@ -53,7 +53,7 @@ const UpdatePassword = ({ navigation }) => {
 const style = StyleSheet.create({
     heading: {
         fontSize: 25,
-        fontWeight: '500',
+        fontWeight: "500",
         textAlign: 'center',
         backgroundColor: color.color3,
         color: color.color2,
@@ -72,7 +72,7 @@ const style = StyleSheet.create({
         color: color.color2,
         marginHorizontal: 20,
         marginVertical: 10,
-        fontWeight: '100',
+        fontWeight: "100",
         alignSelf: 'flex-end'
 
     },
@@ -85,7 +85,7 @@ const style = StyleSheet.create({
         color: color.color2,
         alignSelf: 'center',
         fontSize: 20,
-        fontWeight: 100
+        fontWeight: "100"
 
     },
     link: {

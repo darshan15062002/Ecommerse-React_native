@@ -41,7 +41,7 @@ const Cartitem = ({
 
                 <Text numberOfLines={1} style={{
                     fontSize: 17,
-                    fontWeight: '900'
+                    fontWeight: "900"
                 }}>₹{price}</Text>
 
 
