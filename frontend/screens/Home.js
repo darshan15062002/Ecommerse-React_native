@@ -1,6 +1,6 @@
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Keyboard } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { color, defaultstyling } from '../styles/style'
+import { color, defaultstyling } from "./../styles/style"
 import Header from '../components/Header'
 import { Avatar, Button } from 'react-native-paper'
 import SearchModal from '../components/SearchModal'
@@ -13,7 +13,6 @@ import { getAllAdminProduct, getAllProduct } from '../redux/actions/productActio
 import { useSetCategory } from '../utils/hooks'
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
 import { englishText, gujaratiText, hindiText } from '../utils/language'
-// import { defaultstyling } from '../styles/style'
 
 
 
@@ -32,7 +31,7 @@ const Home = () => {
     const [searchquery, setSearchQuery] = useState('')
 
     useSetCategory(setCatogories, isFocused)
-    // console.log(catogories);
+
 
     const categoryButtonHandler = (id) => {
         setCatogory(id)
