@@ -1,4 +1,8 @@
 {
+  "cli": {
+    "version": ">= 7.5.0"
+  },
+
   "build": {
     "preview": {
       "android": {
@@ -16,6 +20,10 @@
     "preview4": {
       "distribution": "internal"
     },
+    "production": {}
+  },
+
+  "submit": {
     "production": {}
   }
 }

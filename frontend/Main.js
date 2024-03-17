@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from './screens/Home'
 import ProductDetails from './screens/ProductDetails'
-import Toast from 'react-native-toast-message'
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 import Cart from './screens/Cart'
 import Conformorder from './screens/Conformorder'
 import Payment from './screens/Payment'

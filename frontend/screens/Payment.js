@@ -15,7 +15,7 @@ import Loading from '../components/Loading'
 import { useStripe } from '@stripe/stripe-react-native'
 import axios from 'axios'
 import { server } from '../redux/store'
-import { Toast } from 'react-native-toast-message'
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const Payment = ({ route }) => {
     const navigate = useNavigation()

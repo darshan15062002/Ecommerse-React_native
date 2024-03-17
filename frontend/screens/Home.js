@@ -9,9 +9,9 @@ import { useIsFocused, useNavigation } from '@react-navigation/native'
 import Footer from '../components/Footer'
 import Heading from '../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllAdminProduct, getAllProduct } from '../redux/actions/productAction'
+import { getAllProduct } from '../redux/actions/productAction'
 import { useSetCategory } from '../utils/hooks'
-import { Toast } from 'react-native-toast-message';
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 import { englishText, gujaratiText, hindiText } from '../utils/language'
 
 
