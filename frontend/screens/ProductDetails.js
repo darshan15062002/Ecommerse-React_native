@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import { StyleSheet } from 'react-native';
 import { Image } from 'react-native';
 import { Avatar, Button } from 'react-native-paper';
-import { Toast } from 'react-native-toast-message/lib/src/Toast';
+import { Toast } from 'react-native-toast-message';
 import { useDispatch, useSelector } from 'react-redux';
 import { useIsFocused } from '@react-navigation/native';
 import { getProductDetails } from '../redux/actions/productAction';

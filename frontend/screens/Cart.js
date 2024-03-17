@@ -7,7 +7,7 @@ import { Button } from 'react-native-paper'
 import Cartitem from '../components/Cartitem'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
-import { Toast } from 'react-native-toast-message/lib/src/Toast'
+import { Toast } from 'react-native-toast-message'
 import { englishText, gujaratiText, hindiText } from '../utils/language'
 
 
